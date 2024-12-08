@@ -1,0 +1,42 @@
+:root {
+  --color-primary: #D4B983;
+  --color-secondary: #D9D9D9;
+  --color-tertiary: #F3ECDD;
+  font-family: Optima, sans-serif;
+  font-size: 14px;
+}
+
+
+h1 {
+  font-size: 70px;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+button, input {
+  font-family: inherit;
+  font-size: 14px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+*:focus {
+  outline: 0;
+}
