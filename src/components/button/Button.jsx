@@ -1,15 +1,15 @@
 import './Button.css';
 
-function Button({ children, id, onClick, disabled, type, className }) {
+function Button({ buttonText, id, onClick, disabled, buttonType, className }) {
     return (
         <button
-            type={type}
+            type={buttonType}
             id={id}
             onClick={onClick}
             disabled={disabled}
             className={className}
         >
-            {children}
+            {buttonText}
         </button>
     );
 }

@@ -2,6 +2,7 @@ import {useState} from "react";
 import axios from "axios";
 import RegisterForm from "../../components/registerForm/RegisterForm.jsx";
 import {Link} from "react-router-dom";
+import CaretLeftIcon from "../../assets/icons/caret-left.svg";
 
 function Register() {
     const [error, setError] = useState(false);
@@ -35,10 +36,10 @@ function Register() {
 
 
     return (
-        <div className='register-page outer-container'>
-            <div className='register-page inner-container'>
-                <div className='inner-content-container'>
-                    <h2 className='register-title'>Create account</h2>
+        <div className="register-page outer-container">
+            <div className="register-page inner-container">
+                <div className="inner-content-container">
+                    <h2 className="register-title titles">Create account</h2>
 
                     {!submitSuccess ?
                         <div>

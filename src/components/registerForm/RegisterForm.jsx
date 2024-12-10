@@ -22,7 +22,6 @@ function RegisterForm({onSubmit, error}) {
             {error && <p className='error-message-register'>{error}</p>}
             <p className='register-subtitle'>Fill in your email and choose your username and
                 password</p>
-
             <Input
                 inputType='text'
                 inputName='username'
@@ -68,13 +67,11 @@ function RegisterForm({onSubmit, error}) {
                 register={register}
                 errors={errors}
             />
-            <p>* required</p>
             <Button
                 type='submit'
                 className='register-button'
-            >
-                Create account
-            </Button>
+                buttonText="Create Account"
+            />
 
         </form>
     )

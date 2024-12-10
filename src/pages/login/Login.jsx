@@ -52,7 +52,7 @@ function Login() {
         <div className="login-page outer-container">
             <div className="login-page inner-container">
                 <div className="inner-content-container">
-                    <h2 className="register-title titles">Create account</h2>
+                    <h2 className="register-title titles">Login</h2>
                     {!loginSuccess ? (
                         <div>
                             {error && <p>{error}</p>}

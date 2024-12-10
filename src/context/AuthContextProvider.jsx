@@ -42,6 +42,7 @@ export function AuthContextProvider({children}) {
                 user: {
                     username: response.data.username,
                     email: response.data.email,
+                    id: response.data.id,
                 },
                 // authorities: response.data.authorities || [],
                 status: 'done',
