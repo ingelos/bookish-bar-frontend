@@ -1,3 +1,4 @@
+import "./Navigation.css";
 import {Link, NavLink, useNavigate} from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar.jsx";
 import Button from "../button/Button.jsx";
@@ -7,12 +8,12 @@ import UserIcon from "../../assets/icons/user-circle.svg";
 
 function Navigation(){
     const navigate = useNavigate();
-    const { logout } = useContext(AuthContext);
+    const { isAuth, logout } = useContext(AuthContext);
 
 
     return (
         <nav>
-            <div className='nav-container'>
+            <div className="nav-container">
                 <ul className='navigation-links'>
                     <li className='nav-link'>
                         <NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
@@ -36,7 +37,7 @@ function Navigation(){
                     {isAuth ?
                         <div className='user-container'>
                             <Button
-                                type='button'
+                                buttonType='button'
                                 className='log-link'
                                 onClick={logout}
                             >
@@ -44,17 +45,17 @@ function Navigation(){
                             </Button>
                             <Link to={'/profile'}>
                                 <div className='nav-profile-container'>
-                                    <img
-                                        src={ProfilePicture || UserIcon}
-                                        id='user-icon-profile'
-                                        alt='user-icon'/>
+                                    {/*<img*/}
+                                    {/*    src={ProfilePicture || UserIcon}*/}
+                                    {/*    id='user-icon-profile'*/}
+                                    {/*    alt='user-icon'/>*/}
                                 </div>
                             </Link>
                         </div>
                         :
                         <div className='user-container'>
                             <Button
-                                type='button'
+                                buttonType='button'
                                 className='log-link'
                                 onClick={() => navigate('./login')}
                             >

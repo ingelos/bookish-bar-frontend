@@ -71,7 +71,7 @@ function EditAccount() {
                     <div className="edit-account-container">
                         <div className="back-link">
                             <FaLongArrowAltLeft className="arrow-icon"/>
-                            <Link to={`/account/${user.id}`}>Back to account</Link>
+                            <Link to={`/account/${user.username}`}>Back to account</Link>
                         </div>
                         {errorMessage && <p>{errorMessage}</p>}
                         <div className="edit-email-container">

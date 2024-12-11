@@ -38,7 +38,7 @@ function LoginForm({onSubmit}) {
                 errors={errors}
             />
             <Button
-                type="submit"
+                buttonType="submit"
                 className="login-button"
                 buttonText="Login"
             />

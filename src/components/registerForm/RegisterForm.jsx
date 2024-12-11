@@ -68,7 +68,7 @@ function RegisterForm({onSubmit, error}) {
                 errors={errors}
             />
             <Button
-                type='submit'
+                buttonType='submit'
                 className='register-button'
                 buttonText="Create Account"
             />
