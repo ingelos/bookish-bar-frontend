@@ -39,24 +39,27 @@ function Register() {
         <div className="register-page outer-container">
             <div className="register-page inner-container">
                 <div className="inner-content-container">
-                    <h2 className="register-title titles">Create account</h2>
-                    {error && <p>Error...</p>}
-                    {!submitSuccess ?
-                        <div>
-                            <RegisterForm onSubmit={handleRegister}/>
-                            <div className='back-to-login'>
-                                <img src={CaretLeftIcon} alt='caret-left' className='caret-left'/>
-                                <p className='back-to-login-link'><Link to='/login'><strong>Go back</strong></Link>
-                                </p>
+                    <div className="register-container">
+                        <h2 className="register-title titles">Create account</h2>
+                        {error && <p>Error...</p>}
+                        {!submitSuccess ?
+                            <div>
+                                <RegisterForm onSubmit={handleRegister}/>
+                                <div className='back-to-login'>
+                                    <img src={CaretLeftIcon} alt='caret-left' className='caret-left'/>
+                                    <p className='back-to-login-link'><Link to='/login'><strong>Go back</strong></Link>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        :
-                        <div className='succes-container'>
-                            <h2>Congratulations!</h2>
-                            <p>You`&apos;`ve created an account!</p>
-                            <p>You can now log in <Link to={`/login`}><strong>here</strong></Link></p>
-                        </div>
-                    }
+                            :
+                            <div className='succes-container'>
+                                <h2>Congratulations!</h2>
+                                <p>You`&apos;`ve created an account!</p>
+                                <p>You can now log in <Link to={`/login`}><strong>here</strong></Link></p>
+                            </div>
+                        }
+                    </div>
+
                 </div>
             </div>
         </div>

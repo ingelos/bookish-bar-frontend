@@ -27,12 +27,26 @@ nav {
     font-size: 18px;
     text-transform: uppercase;
     list-style: none;
+    margin: 0 30px;
+}
+
+.user-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 120px;
+}
+
+.log-link {
+    background: none;
+    padding: 5px;
+    font-size: 16px;
 }
 
 #user-icon {
     width: 30px;
+    height: 30px;
 }
-
 
 nav a,
 nav a:hover {
