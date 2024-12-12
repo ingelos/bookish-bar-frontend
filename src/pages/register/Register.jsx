@@ -1,3 +1,4 @@
+import "./Register.css";
 import {useState} from "react";
 import axios from "axios";
 import RegisterForm from "../../components/registerForm/RegisterForm.jsx";
@@ -45,10 +46,9 @@ function Register() {
                         {!submitSuccess ?
                             <div>
                                 <RegisterForm onSubmit={handleRegister}/>
-                                <div className='back-to-login'>
+                                <div className='back-link'>
                                     <img src={CaretLeftIcon} alt='caret-left' className='caret-left'/>
-                                    <p className='back-to-login-link'><Link to='/login'><strong>Go back</strong></Link>
-                                    </p>
+                                    <p className='back-to-login-link'><Link to='/login'><strong>Go back</strong></Link></p>
                                 </div>
                             </div>
                             :
@@ -59,7 +59,6 @@ function Register() {
                             </div>
                         }
                     </div>
-
                 </div>
             </div>
         </div>

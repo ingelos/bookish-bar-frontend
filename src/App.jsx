@@ -11,7 +11,7 @@ import Profile from "./pages/profile/Profile.jsx";
 import Account from "./pages/account/Account.jsx";
 import EditAccount from "./pages/editAccount/EditAccount.jsx";
 import EditProfile from "./pages/editProfile/EditProfile.jsx";
-import Subjects from "./pages/subjects/Subjects.jsx";
+import SubjectOverview from "./pages/subjects/SubjectOverview.jsx";
 import Subject from "./pages/subject/Subject.jsx";
 import BookDetails from "./pages/bookDetails/BookDetails.jsx";
 
@@ -31,8 +31,8 @@ function App() {
                 <Route path='/profiles/:username' element={<Profile/>}/>
                 <Route path='/profile/:username/edit' element={<EditProfile/>}/>
 
-                <Route path='/subjects' element={<Subjects/>}/>
-                <Route path='/subjects/:subjectName' element={<Subject/>}/>
+                <Route path='/subjects' element={<SubjectOverview/>}/>
+                <Route path='/subjects/:subject' element={<Subject/>}/>
                 <Route path='/books/:bookId' element={<BookDetails/>}/>
 
                 <Route path='*' element={<NotFound/>}/>

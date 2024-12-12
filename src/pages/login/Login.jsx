@@ -50,7 +50,7 @@ function Login() {
     return (
         <div className="login-page outer-container">
             <div className="login-page inner-container">
-                <div className="inner-content-container">
+                <div className="login-page inner-content-container">
                     <div className="login-container">
                         <h2 className="login-title titles">Login</h2>
                         {error && <p>{error}</p>}

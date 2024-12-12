@@ -24,7 +24,7 @@ function Navigation(){
                     </li>
                     <li className='nav-link'>
                         <NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
-                                 to='/browse'>Browse</NavLink>
+                                 to='/subjects'>Subjects</NavLink>
                     </li>
                 </ul>
                 <div className='nav-search-bar'>
