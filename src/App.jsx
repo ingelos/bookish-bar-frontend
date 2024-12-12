@@ -11,6 +11,9 @@ import Profile from "./pages/profile/Profile.jsx";
 import Account from "./pages/account/Account.jsx";
 import EditAccount from "./pages/editAccount/EditAccount.jsx";
 import EditProfile from "./pages/editProfile/EditProfile.jsx";
+import SubjectOverview from "./pages/subjects/SubjectOverview.jsx";
+import Subject from "./pages/subject/Subject.jsx";
+import BookDetails from "./pages/bookDetails/BookDetails.jsx";
 
 function App() {
 
@@ -23,10 +26,14 @@ function App() {
                 <Route path='/' element={<Home/>}/>
                 <Route path='/register' element={<Register/>}/>
                 <Route path='/login' element={<Login/>}/>
-                <Route path='/account/:userId' element={<Account/>}/>
-                <Route path='/account/:userId/edit' element={<EditAccount/>}/>
-                <Route path='/profiles/:profileId' element={<Profile/>}/>
-                <Route path="/profile/:profileId/edit" element={<EditProfile/>}/>
+                <Route path='/account/:username' element={<Account/>}/>
+                <Route path='/account/:username/edit' element={<EditAccount/>}/>
+                <Route path='/profiles/:username' element={<Profile/>}/>
+                <Route path='/profile/:username/edit' element={<EditProfile/>}/>
+
+                <Route path='/subjects' element={<SubjectOverview/>}/>
+                <Route path='/subjects/:subject' element={<Subject/>}/>
+                <Route path='/books/:bookId' element={<BookDetails/>}/>
 
                 <Route path='*' element={<NotFound/>}/>
             </Routes>

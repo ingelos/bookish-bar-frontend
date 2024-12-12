@@ -1,3 +1,4 @@
+import "./Register.css";
 import {useState} from "react";
 import axios from "axios";
 import RegisterForm from "../../components/registerForm/RegisterForm.jsx";
@@ -6,7 +7,7 @@ import CaretLeftIcon from "../../assets/icons/caret-left.svg";
 
 function Register() {
     const [error, setError] = useState(false);
-    const [submitSuccess, setSubmitSucces] = useState(null);
+    const [submitSuccess, setSubmitSuccess] = useState(null);
 
     async function handleRegister(data) {
         setError(false);
@@ -16,11 +17,11 @@ function Register() {
                 username: data.username,
                 email: data.email,
                 password: data.password,
-                role: [data.user],
+                authority: [data.user],
             });
             console.log('response:', response);
             console.log(`You've created an account!`);
-            setSubmitSucces(true);
+            setSubmitSuccess(true);
 
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -39,24 +40,25 @@ function Register() {
         <div className="register-page outer-container">
             <div className="register-page inner-container">
                 <div className="inner-content-container">
-                    <h2 className="register-title titles">Create account</h2>
-
-                    {!submitSuccess ?
-                        <div>
-                            <RegisterForm onSubmit={handleRegister}/>
-                            <div className='back-to-login'>
-                                <img src={CaretLeftIcon} alt='caret-left' className='caret-left'/>
-                                <p className='back-to-login-link'><Link to='/login'><strong>Go back</strong></Link>
-                                </p>
+                    <div className="register-container">
+                        <h2 className="register-title titles">Create account</h2>
+                        {error && <p>Error...</p>}
+                        {!submitSuccess ?
+                            <div>
+                                <RegisterForm onSubmit={handleRegister}/>
+                                <div className='back-link'>
+                                    <img src={CaretLeftIcon} alt='caret-left' className='caret-left'/>
+                                    <p className='back-to-login-link'><Link to='/login'><strong>Go back</strong></Link></p>
+                                </div>
                             </div>
-                        </div>
-                        :
-                        <div className='succes-container'>
-                            <h2>Congratulations!</h2>
-                            <p>You've created an account!</p>
-                            <p>You can now log in <Link to={`/login`}><strong>here</strong></Link></p>
-                        </div>
-                    }
+                            :
+                            <div className='succes-container'>
+                                <h2>Congratulations!</h2>
+                                <p>You`&apos;`ve created an account!</p>
+                                <p>You can now log in <Link to={`/login`}><strong>here</strong></Link></p>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

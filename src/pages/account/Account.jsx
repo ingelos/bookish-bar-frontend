@@ -1,6 +1,9 @@
 import {Link} from "react-router-dom";
+import {useContext} from "react";
+import AuthContext from "../../context/AuthContext.jsx";
 
 function Account() {
+    const { user } = useContext(AuthContext);
 
     return (
         <section className="account-page outer-container">
@@ -14,7 +17,7 @@ function Account() {
                         </div>
                         <div>
                             <h3>Edit Account Details</h3>
-                            <Link to={`/users/${userId}/edit`}>Edit Account Details</Link>
+                            <Link to={`/users/${user.username}/edit`}>Edit Account Details</Link>
                         </div>
                     </div>
                 </div>

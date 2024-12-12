@@ -1,3 +1,4 @@
+import "./Footer.css";
 import Copyright from "../../assets/icons/copyright.svg";
 
 function Footer() {

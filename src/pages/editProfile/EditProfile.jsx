@@ -4,10 +4,10 @@ import axios from "axios";
 import AuthContext from "../../context/AuthContext.jsx";
 
 function EditProfile() {
-    const { user } = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     const [initialData, setInitialData] = useState(null);
     const [error, setError] = useState(null);
-    const [savedSucces, setSavedSuccess] = useState(false);
+    const [savedSuccess, setSavedSuccess] = useState(false);
 
     useEffect(() => {
         async function fetchProfile() {
@@ -18,13 +18,12 @@ function EditProfile() {
                 setError(error);
             }
         }
-
         fetchProfile();
-    }, []);
+    }, [user.username]);
 
     async function editProfile(data) {
         try {
-            if (initialData?.id) {
+            if (initialData?.username) {
                 await axios.put(`http://localhost:8080/profiles/${user.username}/edit`, data);
             } else {
                 await axios.post(`http://localhost:8080/profiles/${user.username}`, data);
@@ -37,25 +36,25 @@ function EditProfile() {
     }
 
 
-return (
-    <section className="edit-profile-page outer-container">
-        <div className="edit-profile-page inner-container">
-            <div className="edit-profile inner-content-container">
-                <h2 className="edit-profile-title titles">Profile</h2>
-                <div className="edit-profile-container">
-                    {!savedSucces ?
-                        <ProfileForm
-                        onSubmit={editProfile}
-                        initialData={initialData}
-                        error={error}/>
-                        :
-                        <p>Profile saved!</p>
-                    }
+    return (
+        <section className="edit-profile-page outer-container">
+            <div className="edit-profile-page inner-container">
+                <div className="edit-profile inner-content-container">
+                    <h2 className="edit-profile-title titles">Profile</h2>
+                    <div className="edit-profile-container">
+                        {!savedSuccess ?
+                            <ProfileForm
+                                onSubmit={editProfile}
+                                initialData={initialData}
+                                error={error}/>
+                            :
+                            <p>Profile saved!</p>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-)
+        </section>
+    )
 }
 
 export default EditProfile;

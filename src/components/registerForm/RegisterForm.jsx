@@ -20,8 +20,6 @@ function RegisterForm({onSubmit, error}) {
     return (
         <form className='register-form' onSubmit={handleSubmit(handleRegistration)}>
             {error && <p className='error-message-register'>{error}</p>}
-            <p className='register-subtitle'>Fill in your email and choose your username and
-                password</p>
             <Input
                 inputType='text'
                 inputName='username'
@@ -67,12 +65,12 @@ function RegisterForm({onSubmit, error}) {
                 register={register}
                 errors={errors}
             />
+            <p>* required</p>
             <Button
-                type='submit'
-                className='register-button'
+                buttonType='submit'
+                className='submit-button'
                 buttonText="Create Account"
             />
-
         </form>
     )
 }

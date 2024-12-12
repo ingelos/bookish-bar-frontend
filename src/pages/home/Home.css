@@ -1,0 +1,30 @@
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0 30px;
+    width: 100%;
+}
+
+.intro-message h2 {
+    font-size: 26px;
+    font-weight: 300;
+}
+
+.dictionary-bookish {
+    border: 2px dotted black;
+    text-align: left;
+    padding: 10px;
+    margin: 25px 0;
+    max-width: 450px;
+}
+
+.dictionary-bookish h4 {
+    font-weight: 300;
+}
+
+.preview-title-container {
+    width: 100%;
+    border-bottom: 2px solid var(--color-primary);
+}

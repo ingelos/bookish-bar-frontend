@@ -9,12 +9,54 @@
   display: flex;
   flex-basis: 800px;
   flex-direction: column;
-  padding: 20px 40px;
-  margin: 10px 0 20px;
+  padding: 40px;
+  margin: 35px 0;
 }
 
 .inner-content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 2px solid blue;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  padding: 20px 0;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-button {
+  background-color: var(--color-secondary);
+  border-radius: 25px;
+  border: none;
+  margin: 20px 0 15px 0;
+  padding: 8px 20px;
+  width: fit-content;
+}
+
+.titles {
+  /*padding: 10px 0;*/
+  font-size: 24px;
+}
+
+.link-style {
+  border: 1px dotted black;
+  border-radius: 25px;
+  padding: 7px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }

@@ -1,3 +1,4 @@
+import "./Login.css";
 import {Link} from "react-router-dom";
 import {useContext, useState} from "react";
 import AuthContext from "../../context/AuthContext.jsx";
@@ -5,7 +6,7 @@ import LoginForm from "../../components/loginForm/LoginForm.jsx";
 import axios from "axios";
 
 function Login() {
-    const { user, login } = useContext(AuthContext);
+    const {user, login} = useContext(AuthContext);
     const [error, setError] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [loginSuccess, setLoginSuccess] = useState(false);
@@ -46,28 +47,23 @@ function Login() {
     }
 
 
-
     return (
-
         <div className="login-page outer-container">
             <div className="login-page inner-container">
-                <div className="inner-content-container">
-                    <h2 className="register-title titles">Login</h2>
-                    {!loginSuccess ? (
-                        <div>
-                            {error && <p>{error}</p>}
-                            {errorMessage && <p className="error-message">{errorMessage}</p>}
+                <div className="login-page inner-content-container">
+                    <div className="login-container">
+                        <h2 className="login-title titles">Login</h2>
+                        {error && <p>{error}</p>}
+                        {errorMessage && <p className="error-message">{errorMessage}</p>}
+                        {!loginSuccess ?
                             <LoginForm onSubmit={handleLogin}/>
-                        </div>
-                    ) : (
-                        <div>
-                            <h3 className='login-title titles'>Successfully logged in!</h3>
-                            <Link to={`/user/${user.username}`} className='link-button-style'>My account</Link>
-                        </div>
-                    )}
-                    <div>
-                        <p><strong>New here?</strong></p>
-                        <Link to={'/register'} className='link-to-register'>Make an account in one minute!</Link>
+                            :
+                            <div className="success-container">
+                                <h3 className='login-title titles'>Successfully logged in!</h3>
+                                <Link to={`/user/${user.username}`} className='link-button-style'>My account</Link>
+                            </div>
+                        }
+                        <p>New here? <Link to={'/register'} className='link-style'>Create Account</Link></p>
                     </div>
                 </div>
             </div>

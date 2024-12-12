@@ -1,0 +1,8 @@
+.back-link {
+    display: flex;
+    flex-direction: row;
+}
+
+.caret-left {
+    height: 15px;
+}

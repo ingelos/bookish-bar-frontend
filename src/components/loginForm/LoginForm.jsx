@@ -38,8 +38,8 @@ function LoginForm({onSubmit}) {
                 errors={errors}
             />
             <Button
-                type="submit"
-                className="login-button"
+                buttonType="submit"
+                className="submit-button"
                 buttonText="Login"
             />
         </form>
