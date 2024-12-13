@@ -23,11 +23,11 @@ nav {
     justify-content: space-between;
 }
 
-.nav-link {
+.nav-menu-link {
     font-size: 18px;
     text-transform: uppercase;
     list-style: none;
-    margin: 0 30px;
+    margin: 0 10px;
 }
 
 .user-container {
@@ -52,7 +52,6 @@ nav a,
 nav a:hover {
     color: black;
 }
-
 
 .active-menu-link {
     text-decoration: underline;

@@ -6,7 +6,7 @@ function Home() {
     return (
         <section className="home-section outer-container">
             <div className="home-section inner-container">
-                <div className='"home-section inner-content-container'>
+                {/*<div className='"home-section inner-content-container'>*/}
                     <div className="welcome-container">
                         <div className="intro-message">
                             <h2>Welcome to Bookish Bar!</h2>
@@ -21,11 +21,9 @@ function Home() {
                     <div className="trending-container">
                         <div className="preview-container">
                             <h2 className="list-title">Trending today</h2>
-
-
                         </div>
                     </div>
-                </div>
+                {/*</div>*/}
             </div>
         </section>
     )

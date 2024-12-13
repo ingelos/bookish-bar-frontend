@@ -1,35 +1,24 @@
 import "./Navigation.css";
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar.jsx";
 import Button from "../button/Button.jsx";
 import {useContext} from "react";
 import AuthContext from "../../context/AuthContext.jsx";
 import UserIcon from "../../assets/icons/user-circle.svg";
+import NavigationLink from "../navigationLink/NavigationLink.jsx";
 
-function Navigation(){
-    const { isAuth, logout } = useContext(AuthContext);
-
+function Navigation() {
+    const {isAuth, logout} = useContext(AuthContext);
 
     return (
         <nav>
             <div className="nav-container">
                 <ul className='navigation-links'>
-                    <li className='nav-link'>
-                        <NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
-                                 to='/'>Home</NavLink>
-                    </li>
-                    <li className='nav-link'>
-                        <NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
-                                 to='/my-books'>MyBooks</NavLink>
-                    </li>
-                    <li className='nav-link'>
-                        <NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
-                                 to='/subjects'>Subjects</NavLink>
-                    </li>
+                    <NavigationLink navToPage="/" navTitle="Home" customClass="nav-menu-link"/>
+                    <NavigationLink navToPage="/my-books" navTitle="MyBooks" customClass="nav-menu-link"/>
+                    <NavigationLink navToPage="/subjects" navTitle="Browse" customClass="nav-menu-link"/>
                 </ul>
-                <div className='nav-search-bar'>
-                        <SearchBar/>
-                </div>
+                <SearchBar/>
                 <div>
                     {isAuth ?
                         <div className='user-container'>

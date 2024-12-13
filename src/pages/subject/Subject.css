@@ -1,9 +1,33 @@
+.result-pages-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    /*border: 2px solid yellow;*/
+}
+
 .subject-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    width: 100%;
+    padding: 0 30px 20px 0;
+    /*border: 2px solid green;*/
 }
 
 .subject-title {
-    text-transform: capitalize;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+
+.title-container {
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.book-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-basis: 800px;
+    border-bottom: 1px solid var(--color-primary);
 }
