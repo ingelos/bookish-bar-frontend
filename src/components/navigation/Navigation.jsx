@@ -1,14 +1,25 @@
 import "./Navigation.css";
-import {Link} from "react-router-dom";
-import SearchBar from "../searchBar/SearchBar.jsx";
+import {Link, useNavigate} from "react-router-dom";
 import Button from "../button/Button.jsx";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import AuthContext from "../../context/AuthContext.jsx";
 import UserIcon from "../../assets/icons/user-circle.svg";
 import NavigationLink from "../navigationLink/NavigationLink.jsx";
+import MagnifyingGlassIcon from "../../assets/icons/magnifying-glass.svg";
 
 function Navigation() {
     const {isAuth, logout} = useContext(AuthContext);
+
+    const [searchQuery, setSearchQuery] = useState('');
+    const navigate = useNavigate();
+
+    function handleSearchSubmit(event) {
+        event.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/search?query=${encodeURIComponent(searchQuery.trim())}`);
+            setSearchQuery('');
+        }
+    }
 
     return (
         <nav>
@@ -18,13 +29,18 @@ function Navigation() {
                     <NavigationLink navToPage="/my-books" navTitle="MyBooks" customClass="nav-menu-link"/>
                     <NavigationLink navToPage="/subjects" navTitle="Browse" customClass="nav-menu-link"/>
                 </ul>
-                {/*<SearchBar*/}
-                {/*    query={query}*/}
-                {/*    setQuery={setQuery}*/}
-                {/*    searchInputRef={searchInputRef}*/}
-                {/*    onSearch={fetchSearchResults}*/}
-                {/*/>*/}
-                <SearchBar />
+                    <form className="search-bar" onSubmit={handleSearchSubmit}>
+                        <input type="search"
+                               className="search-bar-input"
+                               placeholder="Title or Author..."
+                               value={searchQuery}
+                               onChange={(e) => setSearchQuery(e.target.value)}
+                               />
+                        <button type="submit" className="search-bar-button">
+                            <img src={MagnifyingGlassIcon} alt='' className='magnifying-glass-icon'/>
+                        </button>
+                    </form>
+                {/*<SearchBar onFocus={handleNavigationToSearchPage}/>*/}
                 <div>
                     {isAuth ?
                         <div className='user-container'>

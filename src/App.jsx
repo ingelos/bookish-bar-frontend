@@ -35,7 +35,7 @@ function App() {
 
                 <Route path='/subjects' element={<SubjectOverview/>}/>
                 <Route path='/subjects/:subject' element={<Subject/>}/>
-                <Route path='/search-results' element={<SearchResults/>}/>
+                <Route path='/search' element={<SearchResults/>}/>
                 <Route path='/books/:bookId' element={<BookDetails/>}/>
 
                 <Route path='/:authorId' element={<AuthorDetails/>}/>
