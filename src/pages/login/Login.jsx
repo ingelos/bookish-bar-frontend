@@ -63,7 +63,7 @@ function Login() {
                                 <Link to={`/user/${user.username}`} className='link-button-style'>My account</Link>
                             </div>
                         }
-                        <p>New here? <Link to={'/register'} className='link-style'>Create Account</Link></p>
+                        <p>New here? <Link to={'/register'} className='button link-button'>Create Account</Link></p>
                     </div>
                 </div>
             </div>

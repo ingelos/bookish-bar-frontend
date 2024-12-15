@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import BookCard from "../../components/bookCard/BookCard.jsx";
+import Pagination from "../../components/pagination/Pagination.jsx";
 
 function Subject() {
     const {subject} = useParams();
@@ -11,7 +12,8 @@ function Subject() {
     const [works, setWorks] = useState(0);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 20;
 
     useEffect(() => {
 
@@ -20,9 +22,13 @@ function Subject() {
             setLoading(true);
 
             try {
-                const {data} = await axios.get(`https://openlibrary.org/subjects/${subject}.json`, {});
+                const {data} = await axios.get(`https://openlibrary.org/subjects/${subject}.json`, {
+                    params: {
+                        offset: (currentPage - 1) * pageSize,
+                        limit: pageSize,
+                    }
+                });
                 setBooks(data.works);
-                console.log(data.works);
                 setWorks(data.work_count);
             } catch (error) {
                 if (axios.isCancel(error)) return;
@@ -35,8 +41,13 @@ function Subject() {
 
         fetchSubject();
 
-    }, [subject]);
+    }, [subject, currentPage]);
 
+    const totalPages = Math.min(Math.ceil(works / pageSize), 50);
+
+    async function handlePageChange(pageNumber) {
+        setCurrentPage(pageNumber);
+    }
 
     return (
         <section className="subject-page outer-container">
@@ -64,6 +75,11 @@ function Subject() {
                                 ))
                             )}
                         </div>
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            onPageChange={handlePageChange}
+                        />
                     </div>
                 </div>
             </div>

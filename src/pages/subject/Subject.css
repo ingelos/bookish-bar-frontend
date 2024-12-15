@@ -1,10 +1,4 @@
-.result-pages-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    /*border: 2px solid yellow;*/
-}
+
 
 .subject-container {
     display: flex;

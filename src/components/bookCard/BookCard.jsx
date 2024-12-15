@@ -12,7 +12,7 @@ function BookCard({title, bookId, authorId, author, published, cover}) {
         <article className="book-card">
             <img
                 src={cover ? cover : NoCoverImage}
-                alt='cover'
+                alt={`${title} cover`}
                 onError={onImageError}
                 className='book-cover'
             />

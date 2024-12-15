@@ -20,7 +20,7 @@ function Home() {
                     </div>
                     <div className="trending-container">
                         <div className="preview-container">
-                            <h2 className="list-title">Trending today</h2>
+                            <h2 className="list-title titles">Trending today</h2>
                         </div>
                     </div>
                 {/*</div>*/}

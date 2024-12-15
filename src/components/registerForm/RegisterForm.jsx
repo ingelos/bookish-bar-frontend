@@ -68,7 +68,7 @@ function RegisterForm({onSubmit, error}) {
             <p>* required</p>
             <Button
                 buttonType='submit'
-                className='submit-button'
+                className='button submit-button'
                 buttonText="Create Account"
             />
         </form>

@@ -18,7 +18,13 @@ function Navigation() {
                     <NavigationLink navToPage="/my-books" navTitle="MyBooks" customClass="nav-menu-link"/>
                     <NavigationLink navToPage="/subjects" navTitle="Browse" customClass="nav-menu-link"/>
                 </ul>
-                <SearchBar/>
+                {/*<SearchBar*/}
+                {/*    query={query}*/}
+                {/*    setQuery={setQuery}*/}
+                {/*    searchInputRef={searchInputRef}*/}
+                {/*    onSearch={fetchSearchResults}*/}
+                {/*/>*/}
+                <SearchBar />
                 <div>
                     {isAuth ?
                         <div className='user-container'>
