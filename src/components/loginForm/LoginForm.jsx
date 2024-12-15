@@ -39,7 +39,7 @@ function LoginForm({onSubmit}) {
             />
             <Button
                 buttonType="submit"
-                className="submit-button"
+                className="button submit-button"
                 buttonText="Login"
             />
         </form>

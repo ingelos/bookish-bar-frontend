@@ -24,7 +24,7 @@
     font-weight: 300;
 }
 
-.preview-title-container {
-    width: 100%;
-    border-bottom: 2px solid var(--color-primary);
+.list-title {
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--color-primary)
 }

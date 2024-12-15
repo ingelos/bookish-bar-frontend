@@ -3,21 +3,24 @@
   justify-content: center;
   flex-basis: 1200px;
   margin: 10px 30px 40px;
+  /*border: 2px solid pink;*/
 }
 
 .inner-container {
   display: flex;
   flex-basis: 800px;
   flex-direction: column;
-  padding: 40px;
-  margin: 35px 0;
+  padding: 20px 0;
+  margin: 25px 0;
+  /*border: 2px solid blue;*/
 }
 
 .inner-content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid blue;
+  padding: 15px;
+  /*border: 2px solid red;*/
 }
 
 form {
@@ -32,24 +35,25 @@ label {
   flex-direction: column;
 }
 
-.submit-button {
-  background-color: var(--color-secondary);
+.titles {
+  font-size: 22px;
+}
+
+.button {
+  background-color: var(--color-tertiary);
+  border: 2px solid var(--color-primary);
   border-radius: 25px;
-  border: none;
-  margin: 20px 0 15px 0;
-  padding: 8px 20px;
+  padding: 7px 14px;
   width: fit-content;
 }
 
-.titles {
-  /*padding: 10px 0;*/
-  font-size: 24px;
+.submit-button {
+    margin: 20px 0;
 }
 
-.link-style {
-  border: 1px dotted black;
-  border-radius: 25px;
-  padding: 7px;
+.link-button {
+  margin-left: 10px;
+  border-radius: 0;
 }
 
 button:hover {
@@ -59,4 +63,17 @@ button:hover {
 a {
   text-decoration: none;
   color: black;
+}
+
+.error-message {
+  color: mediumvioletred;
+  padding: 10px 0;
+}
+
+.result-pages-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  /*border: 2px solid yellow;*/
 }
