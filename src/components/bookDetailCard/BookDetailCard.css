@@ -1,0 +1,29 @@
+.book-detail-article {
+    display: flex;
+    flex-direction: row;
+}
+
+.book-detailed-info {
+    flex-basis: 650px;
+    flex-shrink: 1;
+    flex-grow: 0;
+}
+
+.book-detailed-info h4 {
+    margin-top: 5px;
+}
+
+.book-detailed-info p {
+    margin: 10px 0;
+}
+
+.book-cover-detail-container {
+    flex-basis: 200px;
+    flex-shrink: 1;
+    flex-grow: 0;
+    margin-right: 30px;
+}
+
+.book-cover-detail {
+    width: 100%;
+}

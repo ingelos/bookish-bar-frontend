@@ -70,6 +70,10 @@ a {
   padding: 10px 0;
 }
 
+.loading-message {
+  padding: 10px 0;
+}
+
 .result-pages-container {
   display: flex;
   flex-direction: row;

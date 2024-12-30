@@ -25,21 +25,22 @@ function App() {
         <Navigation />
         <main>
             <Routes>
-                <Route path='/' element={<Home/>}/>
-                <Route path='/register' element={<Register/>}/>
-                <Route path='/login' element={<Login/>}/>
-                <Route path='/account/:username' element={<Account/>}/>
-                <Route path='/account/:username/edit' element={<EditAccount/>}/>
-                <Route path='/profiles/:username' element={<Profile/>}/>
-                <Route path='/profile/:username/edit' element={<EditProfile/>}/>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/register" element={<Register/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/account/:username" element={<Account/>}/>
+                <Route path="/account/:username/edit" element={<EditAccount/>}/>
+                <Route path="/profiles/:username" element={<Profile/>}/>
+                <Route path="/profile/:username/edit" element={<EditProfile/>}/>
 
-                <Route path='/subjects' element={<SubjectOverview/>}/>
-                <Route path='/subjects/:subject' element={<Subject/>}/>
-                <Route path='/search' element={<SearchResults/>}/>
-                <Route path='/books/:bookId' element={<BookDetails/>}/>
+                <Route path="/subjects" element={<SubjectOverview/>}/>
+                <Route path="/subjects/:subject" element={<Subject/>}/>
+                <Route path="/search" element={<SearchResults/>}/>
+                <Route path="/books/:bookId" element={<BookDetails/>}/>
 
-                <Route path='/:authorId' element={<AuthorDetails/>}/>
-                <Route path='*' element={<NotFound/>}/>
+
+                <Route path="/authors/:authorId" element={<AuthorDetails/>}/>
+                <Route path="*" element={<NotFound/>}/>
             </Routes>
         </main>
         <Footer />
