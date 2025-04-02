@@ -1,18 +1,19 @@
 .outer-container {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   flex-basis: 1200px;
   margin: 10px 30px 40px;
-  /*border: 2px solid pink;*/
+  border: 2px solid pink;
 }
 
 .inner-container {
   display: flex;
   flex-basis: 800px;
   flex-direction: column;
-  padding: 20px 0;
+  padding: 20px;
   margin: 25px 0;
-  /*border: 2px solid blue;*/
+  border: 2px solid blue;
 }
 
 .inner-content-container {
@@ -20,7 +21,7 @@
   flex-direction: column;
   align-items: center;
   padding: 15px;
-  /*border: 2px solid red;*/
+  border: 2px solid red;
 }
 
 form {
@@ -80,4 +81,8 @@ a {
   justify-content: space-between;
   width: 100%;
   /*border: 2px solid yellow;*/
+}
+
+.arrow-icon {
+  color: var(--color-primary)
 }

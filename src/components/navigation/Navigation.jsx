@@ -29,44 +29,47 @@ function Navigation() {
                     <NavigationLink navToPage="/my-books" navTitle="MyBooks" customClass="nav-menu-link"/>
                     <NavigationLink navToPage="/subjects" navTitle="Browse" customClass="nav-menu-link"/>
                 </ul>
+                <div className="nav-inner-container-right">
                     <form className="search-bar" onSubmit={handleSearchSubmit}>
                         <input type="search"
                                className="search-bar-input"
-                               placeholder="Title or Author..."
+                               placeholder="Search by title or author..."
                                value={searchQuery}
                                onChange={(e) => setSearchQuery(e.target.value)}
-                               />
+                        />
                         <button type="submit" className="search-bar-button">
                             <img src={MagnifyingGlassIcon} alt='' className='magnifying-glass-icon'/>
                         </button>
                     </form>
-                {/*<SearchBar onFocus={handleNavigationToSearchPage}/>*/}
-                <div>
-                    {isAuth ?
-                        <div className='user-container'>
-                            <Button
-                                buttonType='button'
-                                className='log-link'
-                                onClick={logout}
-                                buttonText="Logout"
-                            />
-                            <Link to={'/profile'}>
-                                <div className='user-profile-container'>
-                                    {/*<img*/}
-                                    {/*    src={ProfilePicture || UserIcon}*/}
-                                    {/*    id='user-icon-profile'*/}
-                                    {/*    alt='user-icon'/>*/}
-                                </div>
-                            </Link>
-                        </div>
-                        :
-                        <div className='user-container'>
-                            <Link to={"/login"} className="log-link">
-                                Login
-                            </Link>
-                            <img src={UserIcon} id='user-icon' alt='user-icon'/>
-                        </div>
-                    }
+
+                    {/*<SearchBar onFocus={handleNavigationToSearchPage}/>*/}
+                    <div>
+                        {isAuth ?
+                            <div className='user-container'>
+                                <Button
+                                    buttonType='button'
+                                    className='log-link'
+                                    onClick={logout}
+                                    buttonText="Logout"
+                                />
+                                <Link to={'/profile'}>
+                                    <div className='user-profile-container'>
+                                        {/*<img*/}
+                                        {/*    src={ProfilePicture || UserIcon}*/}
+                                        {/*    id='user-icon-profile'*/}
+                                        {/*    alt='user-icon'/>*/}
+                                    </div>
+                                </Link>
+                            </div>
+                            :
+                            <div className='user-container'>
+                                <Link to={"/login"} className="log-link">
+                                    Login
+                                </Link>
+                                <img src={UserIcon} id='user-icon' alt='user-icon'/>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </nav>

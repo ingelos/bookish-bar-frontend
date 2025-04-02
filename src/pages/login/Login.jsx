@@ -60,7 +60,7 @@ function Login() {
                             :
                             <div className="success-container">
                                 <h3 className='login-title titles'>Successfully logged in!</h3>
-                                <Link to={`/user/${user.username}`} className='link-button-style'>My account</Link>
+                                <Link to={`/users/${user.username}`} className='link-button-style'>My account</Link>
                             </div>
                         }
                         <p>New here? <Link to={'/register'} className='button link-button'>Create Account</Link></p>

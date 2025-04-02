@@ -16,6 +16,7 @@ import Subject from "./pages/subject/Subject.jsx";
 import BookDetails from "./pages/bookDetails/BookDetails.jsx";
 import SearchResults from "./pages/searchResults/SearchResults.jsx";
 import AuthorDetails from "./pages/authorDetails/AuthorDetails.jsx";
+import Trending from "./pages/trending/Trending.jsx";
 
 function App() {
 
@@ -28,11 +29,12 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/account/:username" element={<Account/>}/>
-                <Route path="/account/:username/edit" element={<EditAccount/>}/>
+                <Route path="/users/:username" element={<Account/>}/>
+                <Route path="/users/:username/edit" element={<EditAccount/>}/>
                 <Route path="/profiles/:username" element={<Profile/>}/>
-                <Route path="/profile/:username/edit" element={<EditProfile/>}/>
+                <Route path="/profiles/:username/edit" element={<EditProfile/>}/>
 
+                <Route path="/trending" element={<Trending/>}/>
                 <Route path="/subjects" element={<SubjectOverview/>}/>
                 <Route path="/subjects/:subject" element={<Subject/>}/>
                 <Route path="/search" element={<SearchResults/>}/>

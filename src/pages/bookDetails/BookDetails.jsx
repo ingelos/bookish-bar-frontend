@@ -75,9 +75,10 @@ function BookDetails() {
     return (
         <section className="book-page outer-container">
             <div className="book-page inner-container">
-                    <div className="book-detail-container">
-                        {loading && <p className="loading-message">Loading...</p>}
-                        {error && <p>{error.message}</p>}
+                <div className="book-detail-container">
+                    {loading && <p className="loading-message">Loading...</p>}
+                    {error && <p>{error.message}</p>}
+                    <div className="book-details">
                         {Object.keys(book).length > 0 &&
                             <BookDetailCard
                                 title={book.title}
@@ -90,6 +91,7 @@ function BookDetails() {
                             />
                         }
                     </div>
+                </div>
             </div>
         </section>
 

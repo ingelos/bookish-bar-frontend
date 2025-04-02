@@ -14,6 +14,13 @@ nav {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    /*border: 2px solid green;*/
+}
+
+.nav-inner-container-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .navigation-links {
@@ -21,6 +28,7 @@ nav {
     flex-direction: row;
     flex-basis: 350px;
     justify-content: space-between;
+    /*border: 2px dotted blue;*/
 }
 
 .nav-menu-link {
@@ -35,6 +43,7 @@ nav {
     flex-direction: row;
     align-items: center;
     max-width: 120px;
+    /*border: 2px dotted red;*/
 }
 
 .log-link {
@@ -60,3 +69,4 @@ nav a:hover {
 .default-menu-link {
     text-decoration: none;
 }
+
