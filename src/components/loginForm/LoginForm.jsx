@@ -2,7 +2,7 @@ import Button from "../button/Button.jsx";
 import Input from "../input/Input.jsx";
 import {useForm} from "react-hook-form";
 
-function LoginForm({onSubmit}) {
+function LoginForm({ onSubmit }) {
     const {register, handleSubmit, formState: {errors}} = useForm();
 
     async function handleLogin(data) {
@@ -29,10 +29,6 @@ function LoginForm({onSubmit}) {
                 inputLabel="Password:"
                 validationRules={{
                     required: "Password is required",
-                    minLength: {
-                        value: 6,
-                        message: "A password requires a minimum of 6 characters"
-                    }
                 }}
                 register={register}
                 errors={errors}

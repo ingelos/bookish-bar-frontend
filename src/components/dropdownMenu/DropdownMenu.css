@@ -1,0 +1,59 @@
+.user-container {
+    position: relative;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-button {
+    background-color: var(--color-primary);
+    border: none;
+    cursor: pointer;
+}
+
+#user-icon {
+    width: 30px;
+    height: 30px;
+    display: block;
+    object-fit: cover;
+    color: var(--color-tertiary);
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--color-tertiary);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    padding: 15px;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+    padding: 10px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+.dropdown-content a:hover,
+.dropdown-content button:hover {
+    font-weight: 600;
+}
+
+#account-settings-link {
+    border-top: 1px solid black;
+    padding-top: 20px;
+}
+
+#profile-link {
+    padding-bottom: 20px;
+}

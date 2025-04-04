@@ -11,11 +11,11 @@ function PasswordForm( { onSubmit }) {
     }
 
     return (
-        <form onSubmit={handleSubmit(editPassword)}>
+        <form onSubmit={handleSubmit(editPassword)} className="form-container">
             <Input inputType="password"
                    inputName="newPassword"
                    inputId="newPassword-field"
-                   inputLabel="New Password:"
+                   inputLabel="New Password: *"
                    validationRules={{
                        required: "Password is required",
                        minLength: {
@@ -29,7 +29,7 @@ function PasswordForm( { onSubmit }) {
             <Input inputType="password"
                    inputName="confirmPassword"
                    inputId="confirmPassword-field"
-                   inputLabel="Confirm Password:"
+                   inputLabel="Confirm Password: *"
                    validationRules={{
                        required: "Confirming password is required",
                        validate: (value) => value === newPassword || "Passwords do not match"
@@ -37,7 +37,7 @@ function PasswordForm( { onSubmit }) {
                    register={register}
                    errors={errors}
             />
-            <Button type="submit"
+            <Button buttonType="submit"
                     buttonText="Save password"
                     className="button"
                     />

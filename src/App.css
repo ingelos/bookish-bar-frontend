@@ -4,7 +4,7 @@
   justify-content: center;
   flex-basis: 1200px;
   margin: 10px 30px 40px;
-  border: 2px solid pink;
+  /*border: 2px solid pink;*/
 }
 
 .inner-container {
@@ -12,8 +12,8 @@
   flex-basis: 800px;
   flex-direction: column;
   padding: 20px;
-  margin: 25px 0;
-  border: 2px solid blue;
+  margin: 25px 5px;
+  /*border: 2px solid blue;*/
 }
 
 .inner-content-container {
@@ -21,7 +21,7 @@
   flex-direction: column;
   align-items: center;
   padding: 15px;
-  border: 2px solid red;
+  /*border: 2px solid red;*/
 }
 
 form {
@@ -31,6 +31,12 @@ form {
   padding: 20px 0;
 }
 
+.form-container {
+  border: 2px dotted var(--color-secondary);
+  padding: 20px;
+  margin: 10px 0 30px;
+}
+
 label {
   display: flex;
   flex-direction: column;
@@ -38,23 +44,28 @@ label {
 
 .titles {
   font-size: 22px;
+  margin-bottom: 40px;
 }
 
 .button {
   background-color: var(--color-tertiary);
   border: 2px solid var(--color-primary);
   border-radius: 25px;
-  padding: 7px 14px;
+  padding: 5px 12px;
   width: fit-content;
+  margin-top: 10px;
 }
 
 .submit-button {
     margin: 20px 0;
 }
 
-.link-button {
-  margin-left: 10px;
-  border-radius: 0;
+.link-button-style {
+  margin-top: 30px;
+  padding: 5px 10px;
+  width: fit-content;
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-tertiary);
 }
 
 button:hover {
@@ -86,3 +97,31 @@ a {
 .arrow-icon {
   color: var(--color-primary)
 }
+
+@media screen and (max-width: 768px) {
+  .outer-container {
+    flex-basis: 700px;
+    padding-bottom: 20px;
+  }
+
+  .inner-container {
+    max-width: 600px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header-container {
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .outer-container {
+    flex-basis: 500px;
+  }
+
+  .inner-container {
+    max-width: 400px;
+    margin: 0 20px;
+  }
+}
+

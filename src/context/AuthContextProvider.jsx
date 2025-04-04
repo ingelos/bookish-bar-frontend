@@ -10,7 +10,7 @@ export function AuthContextProvider({children}) {
     const [auth, setAuth] = useState({
         isAuth: false,
         user: null,
-        // authorities: [],
+        authorities: [],
         status: 'pending',
     });
 
@@ -26,16 +26,18 @@ export function AuthContextProvider({children}) {
 
     const login = useCallback(async(token) => {
         localStorage.setItem('token', token);
+
         const decodedToken = jwtDecode(token);
-        const username = decodedToken.sub;
+        const id = decodedToken?.id;
 
         try {
-            const response = await axios.get(`http://localhost:8080/users/${username}`, {
+            const response = await axios.get(`http://localhost:8080/users/${id}`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`,
                 }
             });
+            console.log("User data: ", response.data);
 
             setAuth({
                 isAuth: true,
@@ -44,7 +46,7 @@ export function AuthContextProvider({children}) {
                     email: response.data.email,
                     id: response.data.id,
                 },
-                // authorities: response.data.authorities || [],
+                authorities: response.data.authorities || [],
                 status: 'done',
             });
         } catch (error) {
@@ -59,7 +61,7 @@ export function AuthContextProvider({children}) {
         setAuth({
             isAuth: false,
             user: null,
-            // authorities: [],
+            authorities: [],
             status: 'done',
         });
 
@@ -76,7 +78,7 @@ export function AuthContextProvider({children}) {
             setAuth({
                 isAuth: false,
                 user: null,
-                // authorities: [],
+                authorities: [],
                 status: 'done',
             });
             localStorage.removeItem('token');
@@ -87,7 +89,7 @@ export function AuthContextProvider({children}) {
                 setAuth({
                     isAuth: false,
                     user: null,
-                    // authorities: [],
+                    authorities: [],
                     status: 'done',
                 });
                 localStorage.removeItem('token');
@@ -102,7 +104,7 @@ export function AuthContextProvider({children}) {
         isAuth: auth.isAuth,
         username: auth.user ? auth.user?.username : null,
         user: auth.user || {},
-        // authorities: auth.authorities || [],
+        authorities: auth.authorities || [],
         login: login,
         logout: logout,
         // updateUser,

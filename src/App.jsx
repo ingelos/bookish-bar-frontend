@@ -8,10 +8,9 @@ import Login from "./pages/login/Login.jsx";
 import Home from "./pages/home/Home.jsx";
 import Register from "./pages/register/Register.jsx";
 import Profile from "./pages/profile/Profile.jsx";
-import Account from "./pages/account/Account.jsx";
-import EditAccount from "./pages/editAccount/EditAccount.jsx";
+import AccountSettings from "./pages/accountSettings/AccountSettings.jsx";
 import EditProfile from "./pages/editProfile/EditProfile.jsx";
-import SubjectOverview from "./pages/subjects/SubjectOverview.jsx";
+import SubjectOverview from "./pages/subjectOverview/SubjectOverview.jsx";
 import Subject from "./pages/subject/Subject.jsx";
 import BookDetails from "./pages/bookDetails/BookDetails.jsx";
 import SearchResults from "./pages/searchResults/SearchResults.jsx";
@@ -29,8 +28,8 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/users/:username" element={<Account/>}/>
-                <Route path="/users/:username/edit" element={<EditAccount/>}/>
+                {/*<Route path="/users/:username" element={<Account/>}/>*/}
+                <Route path="/users/:username/account-settings" element={<AccountSettings/>}/>
                 <Route path="/profiles/:username" element={<Profile/>}/>
                 <Route path="/profiles/:username/edit" element={<EditProfile/>}/>
 

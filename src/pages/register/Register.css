@@ -1,3 +1,7 @@
+.success-container p:first-of-type {
+    margin: 30px 0 10px;
+}
+
 .back-link {
     display: flex;
     flex-direction: row;

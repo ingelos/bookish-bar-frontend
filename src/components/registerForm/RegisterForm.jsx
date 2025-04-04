@@ -13,12 +13,12 @@ function RegisterForm({onSubmit, error}) {
         }
     });
 
-    async function handleRegistration(data) {
+    async function handleRegister(data) {
         onSubmit(data);
     }
 
     return (
-        <form className='register-form' onSubmit={handleSubmit(handleRegistration)}>
+        <form className='register-form' onSubmit={handleSubmit(handleRegister)}>
             {error && <p className='error-message-register'>{error}</p>}
             <Input
                 inputType='text'
@@ -58,8 +58,8 @@ function RegisterForm({onSubmit, error}) {
                 validationRules={{
                     required: 'Password is required',
                     minLength: {
-                        value: 6,
-                        message: 'A password requires a minimum of 6 characters'
+                        value: 8,
+                        message: 'A password requires a minimum of 8 characters'
                     }
                 }}
                 register={register}
