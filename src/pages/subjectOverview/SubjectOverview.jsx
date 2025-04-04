@@ -8,7 +8,7 @@ const SubjectOverview = () => {
         <section className="subjects-page outer-container">
             <div className="subjects-page inner-container">
                 <div className="subjects inner-content-container">
-                    <h2 className="subjects-title titles">Subject Overview</h2>
+                    {/*<h2 className="subjects-title titles">Subject Overview</h2>*/}
                     <div className="subject-container">
                         {Object.entries(categorizedSubjects).map(([category, subjects]) => (
                             <div key={category} className="category">

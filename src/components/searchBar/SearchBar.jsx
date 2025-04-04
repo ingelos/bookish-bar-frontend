@@ -1,29 +1,31 @@
 import "./SearchBar.css";
-import { useState} from "react";
+import {useEffect, useState} from "react";
 import MagnifyingGlassIcon from "../../assets/icons/magnifying-glass.svg";
 
 
-function SearchBar({onSearch, searchInputRef}) {
-    const [searchQuery, setSearchQuery] = useState('')
+function SearchBar({ value = '', onSearch}) {
+    const [searchQuery, setSearchQuery] = useState( value);
 
-    function handleSubmit(event) {
-        if (event) {
-            event.preventDefault();
-            onSearch(searchQuery);
-        }
-    }
+    useEffect(() => {
+        setSearchQuery(value);
+    }, [value]);
 
     function handleSearchQueryChange(event) {
         setSearchQuery(event.target.value);
     }
 
+    function handleSubmit(event) {
+        event.preventDefault();
+        if (searchQuery.trim()) {
+            onSearch(searchQuery.trim());
+        }
+    }
 
     return (
         <div className="search-bar-container">
             <form className="search-bar" id="search-form" onSubmit={handleSubmit}>
                 <input
                     type="search"
-                    ref={searchInputRef}
                     className="search-bar-input"
                     placeholder="Search..."
                     value={searchQuery}
@@ -33,7 +35,7 @@ function SearchBar({onSearch, searchInputRef}) {
                     type='submit'
                     className='search-bar-button'
                 >
-                    <img src={MagnifyingGlassIcon} alt='' className='magnifying-glass-icon'/>
+                    <img src={MagnifyingGlassIcon} alt="Search" className='magnifying-glass-icon'/>
                 </button>
             </form>
         </div>

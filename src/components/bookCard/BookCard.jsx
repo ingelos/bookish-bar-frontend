@@ -2,14 +2,15 @@ import "./BookCard.css";
 import {Link} from "react-router-dom";
 import NoCoverImage from "../../assets/icons/No_Cover.jpg";
 
-function BookCard({title, bookId, authorId, author, published, cover}) {
+function BookCard({title, bookId, authors, authorIds, published, cover}) {
 
     function onImageError(e) {
         e.target.src = NoCoverImage;
+        e.target.onerror = null;
     }
 
     return (
-        <article className="book-card">
+        <div className="book-card">
             <img
                 src={cover ? cover : NoCoverImage}
                 alt={`${title} cover`}
@@ -17,11 +18,28 @@ function BookCard({title, bookId, authorId, author, published, cover}) {
                 className='book-cover'
             />
             <div className="book-info">
-                <h3><Link to={`/books/${bookId}`}>{title ? title : "No title available"}</Link></h3>
-                <h4><Link to={`/authors/${authorId}`}>{author ? author : "No author available"}</Link></h4>
-                <p>{published ? published : "No publish date available"}</p>
+                <h3>
+                    <Link to={`/books/${bookId}`}>
+                        {title || "No title available"}
+                    </Link>
+                </h3>
+                <h4>
+                    {authors && authors.length > 0 && authorIds && authorIds.length > 0 ? (
+                        authors.map((author, index) => (
+                                <span key={authorIds[index]}>
+                                <Link to={`/authors/${authorIds[index]}`}>
+                                    {author}
+                                </Link>
+                                    {index < authors.length - 1 && ", "}
+                            </span>
+                        ))
+                    ) : (
+                        <span>No author available</span>
+                    )}
+                </h4>
+                <p>{published ? `First published in ${published}` : "Unknown year"}</p>
             </div>
-        </article>
+        </div>
     )
 }
 

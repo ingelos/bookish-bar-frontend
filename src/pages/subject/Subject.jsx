@@ -29,12 +29,16 @@ function Subject() {
                     }
                 });
                 setBooks(data.works);
+                console.log(data.works);
                 setWorks(data.work_count);
+
+
             } catch (error) {
                 if (axios.isCancel(error)) return;
                 console.error("Error: ", error);
                 setError(error);
             } finally {
+                setError(false);
                 setLoading(false);
             }
         }
@@ -49,6 +53,13 @@ function Subject() {
         setCurrentPage(pageNumber);
     }
 
+    function getCoverUrl(book) {
+        if (book.cover_id) {
+            return `https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg`
+        }
+        return null;
+    }
+
     return (
         <section className="subject-page outer-container">
             <div className="subject-page inner-container">
@@ -59,16 +70,20 @@ function Subject() {
                             {books.length > 0 && <p className="number-of-works">Total works: {works}</p>}
                         </div>
                         {error && <p className="error-message">{error.message}</p>}
-                        {loading && <p>Loading...</p>}
+                        {loading && <p className="loading-message">Loading...</p>}
                         <div className="book-result-container">
                             {books.length > 0 && (
                                 books.map((book) => (
                                     <div className="book-container" key={book.key}>
                                         <BookCard
                                             title={book.title}
-                                            author={book.authors && book.authors[0].name}
-                                            published={`First published in: ${book.first_publish_year}`}
-                                            cover={`https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg`}
+                                            authors={Array.isArray(book.authors) ? book.authors.map(author => author.name || "Unknown author") : []}
+                                            authorIds={Array.isArray(book.authors) ? book.authors.map(author => {
+                                                    const key = author.key || "";
+                                                    return key.replace("/authors/", "");
+                                                }) : []}
+                                            published={book.first_publish_year}
+                                            cover={getCoverUrl(book)}
                                             bookId={(book.key).replace("/works/", "")}
                                         />
                                     </div>

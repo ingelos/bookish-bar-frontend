@@ -14,6 +14,17 @@ nav {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    /*border: 2px solid green;*/
+}
+
+.nav-inner-container-right {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 500px;
+    justify-content: space-between;
+    align-items: center;
+
+    /*border: 2px solid blue;*/
 }
 
 .navigation-links {
@@ -21,6 +32,7 @@ nav {
     flex-direction: row;
     flex-basis: 350px;
     justify-content: space-between;
+    /*border: 2px dotted blue;*/
 }
 
 .nav-menu-link {
@@ -35,18 +47,19 @@ nav {
     flex-direction: row;
     align-items: center;
     max-width: 120px;
+    /*border: 2px dotted red;*/
 }
 
-.log-link {
-    background: none;
-    padding: 5px;
-    font-size: 16px;
-}
+/*.log-link {*/
+/*    background: none;*/
+/*    padding: 5px 10px;*/
+/*    font-size: 16px;*/
+/*    color: var(--color-tertiary);*/
+/*    border: 2px solid var(--color-tertiary);*/
+/*    border-radius: 25px;*/
+/*}*/
 
-#user-icon {
-    width: 30px;
-    height: 30px;
-}
+
 
 nav a,
 nav a:hover {
@@ -59,4 +72,35 @@ nav a:hover {
 
 .default-menu-link {
     text-decoration: none;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    nav {
+        height: 100px;
+    }
+    .navigation-links {
+        flex-direction: column;
+        max-width: 150px;
+    }
+    .nav-menu-link {
+        padding: 5px 0;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    nav {
+        flex-direction: column;
+        height: 120px;
+    }
+    .nav-inner-container-right {
+        flex-direction: column;
+        align-items: flex-end;
+        border: 2px solid blue;
+    }
+    .user-container {
+        padding: 5px 12px 0 0 ;
+    }
 }

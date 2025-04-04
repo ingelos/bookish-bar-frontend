@@ -1,0 +1,25 @@
+.author-detail-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.author-detailed-info {
+    flex-basis: 650px;
+    flex-shrink: 1;
+    flex-grow: 0;
+}
+
+.author-detailed-info p {
+    margin-top: 10px;
+}
+
+.author-img-container {
+    flex-basis: 155px;
+    flex-shrink: 1;
+    flex-grow: 0;
+    margin-right: 35px;
+}
+
+.author-img {
+    width: 100%;
+}

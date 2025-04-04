@@ -1,6 +1,4 @@
-
-import {FaLongArrowAltLeft} from "react-icons/fa";
-import {Link} from "react-router-dom";
+import "./AccountSettings.css";
 import AuthContext from "../../context/AuthContext.jsx";
 import {useContext, useState} from "react";
 import PasswordForm from "../../components/passwordForm/PasswordForm.jsx";
@@ -8,7 +6,7 @@ import axios from "axios";
 import EmailForm from "../../components/emailForm/EmailForm.jsx";
 
 
-function EditAccount() {
+function AccountSettings() {
     const { user } = useContext(AuthContext);
     const [error, setError] = useState(null);
     const [errorMessage, setErrorMessage] = useState(false);
@@ -61,17 +59,15 @@ function EditAccount() {
     }
 
 
-
-
     return (
-        <section className="edit-account-page outer-container">
-            <div className="edit-account-page inner-container">
-                <div className="edit-account inner-content-container">
-                    <h2 className="edit-account-title titles">Profile</h2>
-                    <div className="edit-account-container">
-                        <div className="back-link">
-                            <FaLongArrowAltLeft className="arrow-icon"/>
-                            <Link to={`/account/${user.username}`}>Back to account</Link>
+        <section className="account-settings outer-container">
+            <div className="account-settings inner-container">
+                <div className="account-settings inner-content-container">
+                    <h2 className="account-settings-title titles">Account Settings</h2>
+                    <div className="account-settings-container">
+                        <div className="user-info">
+                            <p>Username: {user.username}</p>
+                            <p>Email: {user.email}</p>
                         </div>
                         {errorMessage && <p>{errorMessage}</p>}
                         <div className="edit-email-container">
@@ -84,8 +80,8 @@ function EditAccount() {
                         {error && <p>{error.message}</p>}
                         <div className="edit-password-container">
                             {!updatePasswordSuccess ?
-                                <PasswordForm onSubmit={editPassword} />
-                               : <p>Password updated!</p>
+                                <PasswordForm onSubmit={editPassword}/>
+                                : <p>Password updated!</p>
                             }
                         </div>
                     </div>
@@ -95,4 +91,4 @@ function EditAccount() {
     )
 }
 
-export default EditAccount;
+export default AccountSettings;

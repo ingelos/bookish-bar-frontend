@@ -1,11 +1,8 @@
-
-
 .subject-container {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 0 30px 20px 0;
-    /*border: 2px solid green;*/
 }
 
 .subject-title {
@@ -14,6 +11,7 @@
 }
 
 .title-container {
+    margin-top: 10px;
     padding-bottom: 15px;
     border-bottom: 2px solid var(--color-primary);
 }

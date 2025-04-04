@@ -10,7 +10,7 @@ function EmailForm({ onSubmit }) {
     }
 
     return (
-        <form className='edit-account-settings-form' onSubmit={handleSubmit(editEmail)}>
+        <form onSubmit={handleSubmit(editEmail)} className="form-container">
             <Input
                 inputType='email'
                 inputName='email'
@@ -43,7 +43,8 @@ function EmailForm({ onSubmit }) {
             />
             <Button
                 buttonType="submit"
-                buttonText="Save"
+                buttonText="Save email"
+                className="button"
             />
         </form>
     )

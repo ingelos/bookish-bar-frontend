@@ -1,0 +1,8 @@
+.book-detail-container {
+    display: flex;
+    flex-direction: row;
+    margin: 40px 0;
+    padding: 20px 0;
+    border-top: 2px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-primary)
+}
