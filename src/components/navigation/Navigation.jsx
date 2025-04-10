@@ -38,19 +38,21 @@ function Navigation() {
                                onChange={(e) => setSearchQuery(e.target.value)}
                         />
                         <button type="submit" className="search-bar-button">
-                            <img src={MagnifyingGlassIcon} alt='' className='magnifying-glass-icon'/>
+                            <img src={MagnifyingGlassIcon} alt='magnifying-glass' className='magnifying-glass-icon'/>
                         </button>
                     </form>
                     <div>
                         {isAuth ?
-                            <DropdownMenu UserIcon={UserIcon} logout={logout}/>
+                            <DropdownMenu
+                                UserIcon={UserIcon}
+                                logout={logout}
+                            />
                             :
                             <div className='user-container'>
                                 <Link to={"/login"}
-                                      className="log-link">
+                                      id="login-link">
                                     Log In
                                 </Link>
-                                {/*<img src={UserIcon} id='user-icon' alt='user-icon'/>*/}
                             </div>
                         }
                     </div>

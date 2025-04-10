@@ -2,22 +2,35 @@ import Input from "../input/Input.jsx";
 import Button from "../button/Button.jsx";
 import {useForm} from "react-hook-form";
 
-function EmailForm({ onSubmit }) {
+function EditUserDetailsForm({ onSubmit }) {
     const {register, handleSubmit, formState: {errors}} = useForm()
 
-    async function editEmail(data) {
+    async function editUserDetails(data) {
         onSubmit(data);
     }
 
     return (
-        <form onSubmit={handleSubmit(editEmail)} className="form-container">
+        <form onSubmit={handleSubmit(editUserDetails)} className="form-container">
+            <h4 className="form-title">Change Account Details</h4>
             <Input
+                inputType='text'
+                inputName='username'
+                inputId='username-field'
+                inputLabel='Username: '
+                validationRules={{
+                    minLength: {
+                        value: 3,
+                        message: 'Please enter a username that is at least 3 characters long'
+                    },
+                }}
+                register={register}
+                errors={errors}
+            />            <Input
                 inputType='email'
                 inputName='email'
                 inputId='newEmail-field'
-                inputLabel='New email: *'
+                inputLabel='Email: '
                 validationRules={{
-                    required: 'Email is required',
                     pattern: {
                         value: /^\S+@\S+$/i,
                         message: 'Please enter a valid email address',
@@ -30,7 +43,7 @@ function EmailForm({ onSubmit }) {
                 inputType='password'
                 inputName='currentPassword'
                 inputId='currentPassword-field'
-                inputLabel='Password: *'
+                inputLabel='Current password: *'
                 validationRules={{
                     required: 'Password is required',
                     minLength: {
@@ -43,11 +56,11 @@ function EmailForm({ onSubmit }) {
             />
             <Button
                 buttonType="submit"
-                buttonText="Save email"
+                buttonText="Save details"
                 className="button"
             />
         </form>
     )
 }
 
-export default EmailForm;
+export default EditUserDetailsForm;

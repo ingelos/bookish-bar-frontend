@@ -8,6 +8,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 .about-info {
@@ -15,13 +16,16 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 #copyright-icon {
     width: 20px;
     margin: 0 2px;
+    filter: invert(100%);
 }
 
 .library-link {
     text-decoration: underline;
+    color: white;
 }

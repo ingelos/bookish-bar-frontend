@@ -40,6 +40,14 @@ nav {
     text-transform: uppercase;
     list-style: none;
     margin: 0 10px;
+    /*text-decoration: none;*/
+}
+
+.nav-menu-link a {
+    /*color: var(--color-tertiary);*/
+    color: white;
+    /*font-weight: 600;*/
+;
 }
 
 .user-container {
@@ -59,7 +67,12 @@ nav {
 /*    border-radius: 25px;*/
 /*}*/
 
-
+#login-link {
+    color: var(--color-tertiary);
+    padding: 5px 10px;
+    border-radius: 25px;
+    border: 2px solid var(--color-tertiary);
+}
 
 nav a,
 nav a:hover {

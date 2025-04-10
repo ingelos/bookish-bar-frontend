@@ -12,6 +12,18 @@ function PasswordForm( { onSubmit }) {
 
     return (
         <form onSubmit={handleSubmit(editPassword)} className="form-container">
+            <h4 className="form-title">Change Password</h4>
+
+            <Input inputType="password"
+                   inputName="currentPassword"
+                   inputId="currentPasswordChangeForm-field"
+                   inputLabel="Current Password: *"
+                   validationRules={{
+                       required: "Current password is required",
+                   }}
+                   register={register}
+                   errors={errors}
+            />
             <Input inputType="password"
                    inputName="newPassword"
                    inputId="newPassword-field"
@@ -25,7 +37,7 @@ function PasswordForm( { onSubmit }) {
                    }}
                    register={register}
                    errors={errors}
-                   />
+            />
             <Input inputType="password"
                    inputName="confirmPassword"
                    inputId="confirmPassword-field"
@@ -40,7 +52,7 @@ function PasswordForm( { onSubmit }) {
             <Button buttonType="submit"
                     buttonText="Save password"
                     className="button"
-                    />
+            />
         </form>
     )
 }

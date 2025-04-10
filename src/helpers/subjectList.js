@@ -2,7 +2,7 @@ const categorizedSubjects = {
     Art: ["architecture", "art history", "dance", "design", "fashion", "film",
         "graphic design", "music", "painting", "photography", "composers", "artists"],
     Fiction: ["fantasy", "historical fiction", "horror", "humor", "literature", "magic",
-        "mystery and detective stories", "plays", "poetry", "romance", "science fiction",
+        "Detective", "plays", "poetry", "romance", "science fiction",
         "short stories", "thriller", "young adult", "kids books", "stories in rhyme", "bedtime stories"],
     Health: ["cooking", "cookbooks", "mental health", "exercise", "nutrition"],
     Science: ["biology", "chemistry", "mathematics", "physics", "algebra", "education", "geography",
