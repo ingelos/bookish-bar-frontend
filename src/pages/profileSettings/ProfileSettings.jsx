@@ -8,7 +8,6 @@ import Button from "../../components/button/Button.jsx";
 
 function ProfileSettings() {
     const {user} = useContext(AuthContext);
-    // const {username} = useParams();
     const [initialData, setInitialData] = useState(null);
     const [hasSubmitted, setHasSubmitted] = useState(null);
     const [error, setError] = useState(null);
@@ -42,16 +41,14 @@ function ProfileSettings() {
         setHasSubmitted(true);
         try {
             if (initialData) {
-                // console.log("Trying to send form with data:", profileData);
-                // console.log("User id:", user.id);
-                // console.log("Token:", token);
                 const {data} = await axios.put(`http://localhost:8080/users/${user.id}/profile`, profileData, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         'Content-Type': 'application/json',
                     },
                 });
-                console.log("Profile updated:", data)
+                console.log("Profile updated:", data);
+                setSavedSuccess(true);
                 setError(null);
             } else {
                 const {data} = await axios.post(`http://localhost:8080/users/${user.id}/profile`, profileData, {
@@ -91,8 +88,9 @@ function ProfileSettings() {
                 <div className="edit-profile inner-content-container">
                     <h2 className="edit-profile-title titles">Profile Settings</h2>
                     <div className="edit-profile-container">
+                        <div className="profile-form-container">
                         {!savedSuccess ?
-                            <div>
+                            <div >
                                 {initialData && fetchError && <p className="error-message">Error fetching profile</p>}
                                 {hasSubmitted && error &&
                                     <p className="error-message">Something went wrong submitting the form, please try again.</p>}
@@ -102,14 +100,10 @@ function ProfileSettings() {
                                     error={error}
                                 />
                             </div>
-                            // <ProfileForm
-                            //     onSubmit={editProfile}
-                            //     // initialData={initialData}
-                            //     // error={error}
-                            // />  }
                             :
-                            <p>Profile Saved!</p>
+                            <p className="success-message">Profile Saved!</p>
                         }
+                        </div>
                         <div className="delete-container">
                             {deleteError && <p className="error-message">Error deleting profile, please try again.</p>}
                             {!deleteSuccess ?
@@ -119,7 +113,7 @@ function ProfileSettings() {
                                         onClick={handleDeleteProfile}
                                 />
                                 :
-                                <p>Profile Deleted!</p>
+                                <p className="success-message">Profile Deleted!</p>
                             }
                         </div>
                     </div>

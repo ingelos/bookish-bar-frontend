@@ -24,6 +24,7 @@ function Login() {
             await login(jwt);
             setLoginSuccess(true);
 
+
         } catch (error) {
             console.error('Error logging in: ', error);
             if (error.response) {
@@ -55,7 +56,6 @@ function Login() {
                 <div className="login-page inner-content-container">
                     <div className="login-container">
 
-
                         {!loginSuccess ?
                             <div>
                                 <h2 className="login-title titles">Login</h2>
@@ -71,8 +71,10 @@ function Login() {
                             </div>
                             :
                             <div className="success-container">
-                            <h3 className='login-title titles'>Successfully logged in!</h3>
-                                <p className='link-button-style'><Link to={`/profiles/${user.username}`}>Profile</Link></p>
+                                <p className='success-title titles'>Welcome book! </p>
+                                <p className='success-title titles'>Ehh we mean back!</p>
+                                <p className='link-button-style'><Link to={`/profiles/${user.username}`}>Profile</Link>
+                                </p>
                             </div>
                         }
 

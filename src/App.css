@@ -89,7 +89,7 @@ a {
 }
 
 .success-message {
-  color: lightseagreen;
+  color: var(--color-primary);
   padding: 20px 0 10px 20px;
 }
 
@@ -102,7 +102,6 @@ a {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  /*border: 2px solid yellow;*/
 }
 
 .delete-container {

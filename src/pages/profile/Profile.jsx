@@ -25,8 +25,13 @@ function Profile() {
                 setProfile(profileResponse.data);
             } catch (error) {
                 if (axios.isCancel(error)) return;
-                console.error("Error fetching profile", error);
-                setError(true);
+                if (error.response && error.response.status === 400) {
+                    const errorMessage = error.response.data.message;
+                    setError(errorMessage);
+                } else {
+                    console.error("Error fetching profile", error);
+                    setError(true);
+                }
             } finally{
                 setLoading(false);
             }
@@ -47,8 +52,8 @@ function Profile() {
                     <h2 className="profile-title titles">{username}</h2>
                     <div className="profile-container">
                         {loading && <p>Loading...</p>}
-                        {error && <p className="error-message">An unexpected error occurred</p>}
-                        {/*<p id="username-profile"><strong>{username}</strong></p>*/}
+                        {/*{error && <p className="error-message">An unexpected error occurred</p>}*/}
+                        {error && <p>{error}</p>}
                         {profile &&
                             <div>
                                 <div className="photo-container">

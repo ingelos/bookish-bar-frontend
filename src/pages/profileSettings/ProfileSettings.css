@@ -1,4 +1,7 @@
 .edit-profile-container  p{
-    display: flex;
-    justify-content: center;
+    margin-left: 15px;
+}
+
+.profile-form-container {
+    min-height: 250px;
 }

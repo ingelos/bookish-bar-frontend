@@ -2,30 +2,17 @@ import Input from "../input/Input.jsx";
 import Button from "../button/Button.jsx";
 import {useForm} from "react-hook-form";
 
-function EditUserDetailsForm({ onSubmit }) {
+function ChangeEmailForm({ onSubmit }) {
     const {register, handleSubmit, formState: {errors}} = useForm()
 
-    async function editUserDetails(data) {
+    async function editEmail(data) {
         onSubmit(data);
     }
 
     return (
-        <form onSubmit={handleSubmit(editUserDetails)} className="form-container">
-            <h4 className="form-title">Change Account Details</h4>
+        <form onSubmit={handleSubmit(editEmail)} className="form-container">
+            <h4 className="form-title">Change Email</h4>
             <Input
-                inputType='text'
-                inputName='username'
-                inputId='username-field'
-                inputLabel='Username: '
-                validationRules={{
-                    minLength: {
-                        value: 3,
-                        message: 'Please enter a username that is at least 3 characters long'
-                    },
-                }}
-                register={register}
-                errors={errors}
-            />            <Input
                 inputType='email'
                 inputName='email'
                 inputId='newEmail-field'
@@ -41,9 +28,9 @@ function EditUserDetailsForm({ onSubmit }) {
             />
             <Input
                 inputType='password'
-                inputName='currentPassword'
-                inputId='currentPassword-field'
-                inputLabel='Current password: *'
+                inputName='password'
+                inputId='passwordEmail-field'
+                inputLabel='Password: *'
                 validationRules={{
                     required: 'Password is required',
                     minLength: {
@@ -56,11 +43,11 @@ function EditUserDetailsForm({ onSubmit }) {
             />
             <Button
                 buttonType="submit"
-                buttonText="Save details"
+                buttonText="Save email"
                 className="button"
             />
         </form>
     )
 }
 
-export default EditUserDetailsForm;
+export default ChangeEmailForm;
