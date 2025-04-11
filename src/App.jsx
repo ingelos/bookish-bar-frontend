@@ -9,7 +9,7 @@ import Home from "./pages/home/Home.jsx";
 import Register from "./pages/register/Register.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import AccountSettings from "./pages/accountSettings/AccountSettings.jsx";
-import EditProfile from "./pages/editProfile/EditProfile.jsx";
+import ProfileSettings from "./pages/profileSettings/ProfileSettings.jsx";
 import SubjectOverview from "./pages/subjectOverview/SubjectOverview.jsx";
 import Subject from "./pages/subject/Subject.jsx";
 import BookDetails from "./pages/bookDetails/BookDetails.jsx";
@@ -31,7 +31,7 @@ function App() {
                 {/*<Route path="/users/:username" element={<Account/>}/>*/}
                 <Route path="/users/:username/account-settings" element={<AccountSettings/>}/>
                 <Route path="/profiles/:username" element={<Profile/>}/>
-                <Route path="/profiles/:username/edit" element={<EditProfile/>}/>
+                <Route path="/profiles/:username/profile-settings" element={<ProfileSettings/>}/>
 
                 <Route path="/trending" element={<Trending/>}/>
                 <Route path="/subjects" element={<SubjectOverview/>}/>

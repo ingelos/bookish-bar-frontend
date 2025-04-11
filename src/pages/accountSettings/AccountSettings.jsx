@@ -3,20 +3,85 @@ import AuthContext from "../../context/AuthContext.jsx";
 import {useContext, useState} from "react";
 import PasswordForm from "../../components/passwordForm/PasswordForm.jsx";
 import axios from "axios";
-import EmailForm from "../../components/emailForm/EmailForm.jsx";
+import Button from "../../components/button/Button.jsx";
+import ChangeUsernameForm from "../../components/changeUsernameForm/ChangeUsernameForm.jsx";
+import ChangeEmailForm from "../../components/changeEmailForm/ChangeEmailForm.jsx";
 
 
 function AccountSettings() {
-    const { user } = useContext(AuthContext);
+    const {user, login} = useContext(AuthContext);
     const [error, setError] = useState(null);
+    const [editError, setEditError] = useState(null);
     const [errorMessage, setErrorMessage] = useState(false);
-    const [updatePasswordSuccess, setUpdatePasswordSuccess] = useState(false);
-    const [updateEmailSuccess, setUpdateEmailSuccess] = useState(false);
+    const [updatePasswordSuccess, setUpdatePasswordSuccess] = useState(null);
+    const [updateEmailSuccess, setUpdateEmailSuccess] = useState(null);
+    const [updateUsernameSuccess, setUpdateUsernameSuccess] = useState(null);
+    const [deleteSuccess, setDeleteSuccess] = useState(null);
+    const [deleteError, setDeleteError] = useState(null);
     const token = localStorage.getItem('token');
+
+
+    async function handleEditUsername(formData) {
+        setEditError(null);
+        const oldToken = localStorage.getItem('token');
+
+        try {
+            const response = await axios.put(`http://localhost:8080/users/${user.id}/change-username`, {
+                username: formData.username,
+                password: formData.password,
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${oldToken}`,
+                }
+            });
+
+            const {token: newToken} = response.data;
+
+            localStorage.setItem('token', newToken);
+            await login(newToken);
+
+            setUpdateUsernameSuccess(true);
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setErrorMessage("Invalid password");
+            }
+            console.error(error);
+            setEditError(true);
+        }
+    }
+
+    async function handleEditEmail(formData) {
+        setEditError(null);
+        const token = localStorage.getItem('token');
+
+        try {
+            const {data} = await axios.put(`http://localhost:8080/users/${user.id}/change-email`, {
+                email: formData.email,
+                password: formData.password,
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+
+            setUpdateEmailSuccess(true);
+            console.log(`Email successfully updated`, data);
+
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setErrorMessage("Invalid password");
+            }
+            console.error(error);
+            setEditError(true);
+        }
+    }
 
     async function editPassword(formData) {
         try {
-            const {data} = await axios.patch(`http://localhost:8080/users/${user.username}/password`, {
+            const {data} = await axios.put(`http://localhost:8080/users/${user.id}/change-password`, {
+                currentPassword: formData.currentPassword,
                 newPassword: formData.newPassword,
                 confirmPassword: formData.confirmPassword,
             }, {
@@ -25,36 +90,30 @@ function AccountSettings() {
                     Authorization: `Bearer ${token}`,
                 }
             });
+
             console.log('Password successfully updated', data);
             setUpdatePasswordSuccess(true);
+
         } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setErrorMessage("Invalid current password");
+            }
             console.error('Error updating password', error);
             setError(true);
         }
     }
 
-    async function editEmail(formData) {
-        setError(false);
-        const token = localStorage.getItem('token');
-
+    async function handleDeleteAccount() {
         try {
-            const {data} = await axios.patch(`http://localhost:8080/users/${user.username}/email`, {
-                email: formData.email,
-                currentPassword: formData.currentPassword,
-            }, {
+            await axios.delete(`http://localhost:8080/users/${user.id}`, {
                 headers: {
-                    "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
-                }
+                },
             });
-            setUpdateEmailSuccess(true);
-            console.log(`Account details successfully updated`, data);
+            setDeleteSuccess(true);
         } catch (error) {
-            if (error.response && error.response.status === 400) {
-                setErrorMessage("Invalid password");
-            }
-            console.error(error);
-            setError(true);
+            console.error("Error deleting profile", error);
+            setDeleteError(true);
         }
     }
 
@@ -70,18 +129,46 @@ function AccountSettings() {
                             <p>Email: {user.email}</p>
                         </div>
                         {errorMessage && <p>{errorMessage}</p>}
+                        {editError && <p>Error Editing Account Details.</p>}
+                        <div className="edit-username-container">
+                            {!updateUsernameSuccess ?
+                                <ChangeUsernameForm
+                                    onSubmit={handleEditUsername}
+                                />
+                                : <p className="success-message">Successfully updated your Username!</p>
+                            }
+
+                        </div>
                         <div className="edit-email-container">
                             {!updateEmailSuccess ?
-                                <EmailForm onSubmit={editEmail}/>
-                                : <p>Email updated!</p>
+                                <ChangeEmailForm
+                                    onSubmit={handleEditEmail}
+                                />
+                                : <p className="success-message">Successfully updated your Email!</p>
                             }
 
                         </div>
                         {error && <p>{error.message}</p>}
+                        {errorMessage && <p>{errorMessage}</p>}
                         <div className="edit-password-container">
                             {!updatePasswordSuccess ?
-                                <PasswordForm onSubmit={editPassword}/>
-                                : <p>Password updated!</p>
+                                <PasswordForm
+                                    onSubmit={editPassword}
+                                />
+                                : <p className="success-message">Successfully updated your Password!</p>
+                            }
+                        </div>
+                        <div className="delete-container">
+                            {deleteError &&
+                                <p className="error-message">Error Deleting Account.</p>}
+                            {!deleteSuccess ?
+                                <Button buttonType="button"
+                                        buttonText="Delete Account"
+                                        className="button"
+                                        onClick={handleDeleteAccount}
+                                />
+                                :
+                                <p className="success-message">Account Deleted!</p>
                             }
                         </div>
                     </div>

@@ -1,19 +1,26 @@
 import {useForm} from "react-hook-form";
 import Input from "../input/Input.jsx";
 import Button from "../button/Button.jsx";
+import {useEffect} from "react";
 
 
-function ProfileForm({ onSubmit, initialData, error}) {
-    const {register, handleSubmit, formState: {errors}} = useForm({
-        defaultValues: initialData,
+function ProfileForm({ onSubmit, initialData, submitError}) {
+    const {register, handleSubmit, formState: {errors}, reset} = useForm({
+        defaultValues: initialData || {},
     });
+
+    useEffect(() => {
+        if (initialData) {
+            reset(initialData);
+        }
+    }, [initialData, reset]);
 
     async function handleUpdatingProfile(data) {
         onSubmit(data);
     }
 
     return (
-        <form className='create-profile-form' onSubmit={handleSubmit(handleUpdatingProfile)}>
+        <form className='form-container' onSubmit={handleSubmit(handleUpdatingProfile)}>
             <Input
                 inputType='text'
                 inputName='firstname'
@@ -48,9 +55,9 @@ function ProfileForm({ onSubmit, initialData, error}) {
             <Button
                 buttonType="submit"
                 buttonText="Save profile"
-                className="profile-submit-button"
+                className="button"
             />
-            {error && <p>Something went wrong submitting the form, please try again.</p>}
+            {submitError && <p className="error-message">Something went wrong submitting the form, please try again.</p>}
         </form>
     )
 }

@@ -16,14 +16,6 @@ export function AuthContextProvider({children}) {
 
     const navigate = useNavigate();
 
-    // const updateUser = (updatedUser) => {
-    //     setAuth((prevAuth) => ({
-    //         ...prevAuth,
-    //         user: updatedUser,
-    //         authorities: updatedUser.authorities,
-    //     }));
-    // };
-
     const login = useCallback(async(token) => {
         localStorage.setItem('token', token);
 
@@ -37,7 +29,6 @@ export function AuthContextProvider({children}) {
                     "Authorization": `Bearer ${token}`,
                 }
             });
-            console.log("User data: ", response.data);
 
             setAuth({
                 isAuth: true,
@@ -107,7 +98,6 @@ export function AuthContextProvider({children}) {
         authorities: auth.authorities || [],
         login: login,
         logout: logout,
-        // updateUser,
     };
 
     return (

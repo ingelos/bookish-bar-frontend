@@ -2,7 +2,7 @@ import Input from "../input/Input.jsx";
 import Button from "../button/Button.jsx";
 import {useForm} from "react-hook-form";
 
-function EmailForm({ onSubmit }) {
+function ChangeEmailForm({ onSubmit }) {
     const {register, handleSubmit, formState: {errors}} = useForm()
 
     async function editEmail(data) {
@@ -11,13 +11,13 @@ function EmailForm({ onSubmit }) {
 
     return (
         <form onSubmit={handleSubmit(editEmail)} className="form-container">
+            <h4 className="form-title">Change Email</h4>
             <Input
                 inputType='email'
                 inputName='email'
                 inputId='newEmail-field'
-                inputLabel='New email: *'
+                inputLabel='Email: '
                 validationRules={{
-                    required: 'Email is required',
                     pattern: {
                         value: /^\S+@\S+$/i,
                         message: 'Please enter a valid email address',
@@ -28,8 +28,8 @@ function EmailForm({ onSubmit }) {
             />
             <Input
                 inputType='password'
-                inputName='currentPassword'
-                inputId='currentPassword-field'
+                inputName='password'
+                inputId='passwordEmail-field'
                 inputLabel='Password: *'
                 validationRules={{
                     required: 'Password is required',
@@ -50,4 +50,4 @@ function EmailForm({ onSubmit }) {
     )
 }
 
-export default EmailForm;
+export default ChangeEmailForm;

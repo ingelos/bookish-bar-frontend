@@ -31,6 +31,10 @@ form {
   padding: 20px 0;
 }
 
+.form-title {
+  margin-bottom: 20px;
+}
+
 .form-container {
   border: 2px dotted var(--color-secondary);
   padding: 20px;
@@ -45,6 +49,7 @@ label {
 .titles {
   font-size: 22px;
   margin-bottom: 40px;
+  /*color: var(--color-primary)*/
 }
 
 .button {
@@ -53,7 +58,7 @@ label {
   border-radius: 25px;
   padding: 5px 12px;
   width: fit-content;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .submit-button {
@@ -80,6 +85,12 @@ a {
 .error-message {
   color: mediumvioletred;
   padding: 10px 0;
+  margin: 10px 0;
+}
+
+.success-message {
+  color: var(--color-primary);
+  padding: 20px 0 10px 20px;
 }
 
 .loading-message {
@@ -91,7 +102,12 @@ a {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  /*border: 2px solid yellow;*/
+}
+
+.delete-container {
+  margin: 20px;
+  padding-top: 20px;
+  border-top: 2px dotted var(--color-primary)
 }
 
 .arrow-icon {

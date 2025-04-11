@@ -19,8 +19,10 @@ function DropdownMenu({logout, UserIcon}) {
 
                 {isOpen && (
                     <div className="dropdown-content">
+                        <p>{user.username}</p>
                         <Link to={`/profiles/${user.username}`} id="profile-link">Profile</Link>
-                        <Link to={`/users/${user.username}/account-settings`} id="account-settings-link">Account Settings</Link>
+                        <Link to={`/profiles/${user.username}/profile-settings`}  id="profile-settings-link">Profile Settings</Link>
+                        <Link to={`/users/${user.username}/account-settings`}>Account Settings</Link>
                         <button className='log-link' onClick={logout}>
                             Sign out
                         </button>

@@ -5,6 +5,7 @@ import AuthContext from "../../context/AuthContext.jsx";
 import LoginForm from "../../components/loginForm/LoginForm.jsx";
 import axios from "axios";
 
+
 function Login() {
     const {login, user} = useContext(AuthContext);
     const [error, setError] = useState(null);
@@ -22,6 +23,7 @@ function Login() {
             const {jwt} = response.data;
             await login(jwt);
             setLoginSuccess(true);
+
 
         } catch (error) {
             console.error('Error logging in: ', error);
@@ -54,20 +56,25 @@ function Login() {
                 <div className="login-page inner-content-container">
                     <div className="login-container">
 
-                        {error && <p>{error}</p>}
-                        {errorMessage && <p className="error-message">{errorMessage}</p>}
                         {!loginSuccess ?
                             <div>
                                 <h2 className="login-title titles">Login</h2>
-                                <LoginForm onSubmit={handleLogin}/>
-                                <p id="create-account-link">New here? <Link to={'/register'}
-                                                                            className='button link-button'>Create
-                                    Account</Link></p>
+                                {error && <p>{error}</p>}
+                                {errorMessage && <p className="error-message">{errorMessage}</p>}
+                                <LoginForm
+                                    onSubmit={handleLogin}
+                                />
+                                <div id='create-account-link'>
+                                    <p>New here?</p>
+                                    <p><Link to={'/register'} className='button link-button'>Create Account</Link></p>
+                                </div>
                             </div>
                             :
                             <div className="success-container">
-                                <h3 className='login-title titles'>Successfully logged in!</h3>
-                                <p className='link-button-style'><Link to={`/users/${user.username}`}>My account</Link></p>
+                                <p className='success-title titles'>Welcome book! </p>
+                                <p className='success-title titles'>Ehh we mean back!</p>
+                                <p className='link-button-style'><Link to={`/profiles/${user.username}`}>Profile</Link>
+                                </p>
                             </div>
                         }
 
