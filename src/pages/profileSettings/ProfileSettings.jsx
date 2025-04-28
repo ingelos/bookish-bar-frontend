@@ -1,65 +1,23 @@
 import "./ProfileSettings.css";
 import ProfileForm from "../../components/profileForm/ProfileForm.jsx";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext.jsx";
 import Button from "../../components/button/Button.jsx";
 
 
 function ProfileSettings() {
-    const {user} = useContext(AuthContext);
+    const {user, userProfileData, profilePhotoUrl} = useContext(AuthContext);
     const [file, setFile] = useState([]);
     const [uploadSuccess, setUploadSuccess] = useState(false);
     const [previewUrl, setPreviewUrl] = useState('');
-    const [profilePhotoUrl, setProfilePhotoUrl] = useState('');
-    const [initialData, setInitialData] = useState(null);
     const [hasSubmitted, setHasSubmitted] = useState(null);
     const [error, setError] = useState(null);
-    const [fetchError, setFetchError] = useState(null);
     const [deleteError, setDeleteError] = useState(null);
     const [savedSuccess, setSavedSuccess] = useState(false);
     const [deleteSuccess, setDeleteSuccess] = useState(false);
     const [deletePhotoSuccess, setDeletePhotoSuccess] = useState(false);
     const token = localStorage.getItem('token');
-
-    useEffect(() => {
-
-
-        async function fetchProfile() {
-                try {
-                    const profileResponse = await axios.get(`http://localhost:8080/users/${user.id}/profile`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                            'Content-Type': 'application/json',
-                        },
-                    });
-                    setInitialData(profileResponse.data);
-
-                    try {
-                        const photoResponse = await axios.get(`http://localhost:8080/profiles/${user.username}/photo`, {
-                            responseType: 'blob',
-                        });
-
-                        const photoUrl = URL.createObjectURL(photoResponse.data);
-                        if (photoUrl != null) {
-                            setProfilePhotoUrl(photoUrl);
-                        }
-                    } catch (photoError) {
-                        if (photoError.response && photoError.response.status === 404) {
-                            setProfilePhotoUrl(null);
-                        } else {
-                            console.error("Error fetching photo:", photoError);
-                            setProfilePhotoUrl(null);
-                        }
-                    }
-                } catch (error) {
-                    setFetchError(error);
-                }
-            }
-
-            fetchProfile();
-        }, [user.id, user.username]
-    );
 
 
     function handleImageChange(e) {
@@ -94,7 +52,7 @@ function ProfileSettings() {
     async function editProfile(profileData) {
         setHasSubmitted(true);
         try {
-            if (initialData) {
+            if (userProfileData) {
                 const {data} = await axios.put(`http://localhost:8080/users/${user.id}/profile`, profileData, {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -158,14 +116,14 @@ function ProfileSettings() {
                         <div className="profile-form-container">
                             {!savedSuccess ?
                                 <div>
-                                    {initialData && fetchError &&
-                                        <p className="error-message">Error fetching profile</p>}
+                                    {/*{userProfileData &&*/}
+                                    {/*    <p className="error-message">Error fetching profile</p>}*/}
                                     {hasSubmitted && error &&
                                         <p className="error-message">Something went wrong submitting the form,
                                             please try again.</p>}
                                     <ProfileForm
                                         onSubmit={editProfile}
-                                        initialData={initialData}
+                                        initialData={userProfileData}
                                         error={error}
                                     />
                                 </div>
@@ -182,8 +140,9 @@ function ProfileSettings() {
                                                  className="profile-photo"/>
                                         }
                                         {!previewUrl && !deletePhotoSuccess && profilePhotoUrl &&
-                                            <img src={profilePhotoUrl}
-                                                 className="profile-photo" alt="Profile photo"/>
+                                            <img src={`http://localhost:8080/profiles/${user.username}/photo`}
+                                                 className="profile-photo"
+                                                 alt="Profile photo"/>
                                         }
                                     </div>
                                     <label htmlFor="profile-photo">
