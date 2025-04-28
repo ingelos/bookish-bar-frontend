@@ -8,6 +8,10 @@ import Button from "../../components/button/Button.jsx";
 
 function ProfileSettings() {
     const {user} = useContext(AuthContext);
+    const [file, setFile] = useState([]);
+    const [uploadSuccess, setUploadSuccess] = useState(false);
+    const [previewUrl, setPreviewUrl] = useState('');
+    const [profilePhotoUrl, setProfilePhotoUrl] = useState('');
     const [initialData, setInitialData] = useState(null);
     const [hasSubmitted, setHasSubmitted] = useState(null);
     const [error, setError] = useState(null);
@@ -15,26 +19,76 @@ function ProfileSettings() {
     const [deleteError, setDeleteError] = useState(null);
     const [savedSuccess, setSavedSuccess] = useState(false);
     const [deleteSuccess, setDeleteSuccess] = useState(false);
+    const [deletePhotoSuccess, setDeletePhotoSuccess] = useState(false);
     const token = localStorage.getItem('token');
 
-
     useEffect(() => {
-        async function fetchProfile() {
-            try {
-                const {data} = await axios.get(`http://localhost:8080/users/${user.id}/profile`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-Type': 'application/json',
-                    },
-                });
-                setInitialData(data);
-            } catch (error) {
-                setFetchError(error);
-            }
-        }
 
-        fetchProfile();
-    }, [user.id]);
+
+        async function fetchProfile() {
+                try {
+                    const profileResponse = await axios.get(`http://localhost:8080/users/${user.id}/profile`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            'Content-Type': 'application/json',
+                        },
+                    });
+                    setInitialData(profileResponse.data);
+
+                    try {
+                        const photoResponse = await axios.get(`http://localhost:8080/profiles/${user.username}/photo`, {
+                            responseType: 'blob',
+                        });
+
+                        const photoUrl = URL.createObjectURL(photoResponse.data);
+                        if (photoUrl != null) {
+                            setProfilePhotoUrl(photoUrl);
+                        }
+                    } catch (photoError) {
+                        if (photoError.response && photoError.response.status === 404) {
+                            setProfilePhotoUrl(null);
+                        } else {
+                            console.error("Error fetching photo:", photoError);
+                            setProfilePhotoUrl(null);
+                        }
+                    }
+                } catch (error) {
+                    setFetchError(error);
+                }
+            }
+
+            fetchProfile();
+        }, [user.id, user.username]
+    );
+
+
+    function handleImageChange(e) {
+        const file = e.target.files[0];
+
+        setFile(file);
+        setPreviewUrl(URL.createObjectURL(file));
+    }
+
+    async function handleUploadPhoto(e) {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("file", file);
+
+        try {
+            const {data} = await axios.post(`http://localhost:8080/users/${user.id}/profile/photo`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setUploadSuccess(true);
+            setPreviewUrl(null);
+            console.log("Photo uploaded successfully!", data);
+        } catch (error) {
+            console.log("Error uploading photo", error);
+        }
+    }
 
 
     async function editProfile(profileData) {
@@ -81,31 +135,73 @@ function ProfileSettings() {
         }
     }
 
+    async function handleDeletePhoto() {
+        try {
+            await axios.delete(`http://localhost:8080/users/${user.id}/profile/photo`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setDeletePhotoSuccess(true);
+        } catch (error) {
+            console.error("Error deleting photo", error);
+        }
+    }
+
 
     return (
-        <section className="edit-profile-page outer-container">
-            <div className="edit-profile-page inner-container">
-                <div className="edit-profile inner-content-container">
-                    <h2 className="edit-profile-title titles">Profile Settings</h2>
-                    <div className="edit-profile-container">
+        <section className="profile-settings-page outer-container">
+            <div className="profile-settings-page inner-container">
+                <div className="profile-settings inner-content-container">
+                    <h2 className="profile-settings-title titles">Profile Settings</h2>
+                    <div className="profile-settings-container">
                         <div className="profile-form-container">
-                        {!savedSuccess ?
-                            <div >
-                                {initialData && fetchError && <p className="error-message">Error fetching profile</p>}
-                                {hasSubmitted && error &&
-                                    <p className="error-message">Something went wrong submitting the form, please try again.</p>}
-                                <ProfileForm
-                                    onSubmit={editProfile}
-                                    initialData={initialData}
-                                    error={error}
-                                />
-                            </div>
-                            :
-                            <p className="success-message">Profile Saved!</p>
-                        }
+                            {!savedSuccess ?
+                                <div>
+                                    {initialData && fetchError &&
+                                        <p className="error-message">Error fetching profile</p>}
+                                    {hasSubmitted && error &&
+                                        <p className="error-message">Something went wrong submitting the form,
+                                            please try again.</p>}
+                                    <ProfileForm
+                                        onSubmit={editProfile}
+                                        initialData={initialData}
+                                        error={error}
+                                    />
+                                </div>
+                                :
+                                <p className="success-message">Profile Saved!</p>
+                            }
                         </div>
-                        <div className="delete-container">
-                            {deleteError && <p className="error-message">Error deleting profile, please try again.</p>}
+                        <div className="profile-photo-container">
+                            {!uploadSuccess ?
+                                <form onSubmit={handleUploadPhoto}>
+                                    <div className="preview-container">
+                                        {previewUrl &&
+                                            <img src={previewUrl} alt="Example of chosen image"
+                                                 className="profile-photo"/>
+                                        }
+                                        {!previewUrl && !deletePhotoSuccess && profilePhotoUrl &&
+                                            <img src={profilePhotoUrl}
+                                                 className="profile-photo" alt="Profile photo"/>
+                                        }
+                                    </div>
+                                    <label htmlFor="profile-photo">
+                                        Choose image:
+                                        <input type="file" name="file" id="profile-photo"
+                                               onChange={handleImageChange}/>
+                                    </label>
+                                    <button type="submit" className="button">Upload photo</button>
+                                </form>
+                                :
+                                <p className="success-message">Successfully added a photo to your profile!</p>
+                            }
+                        </div>
+                    </div>
+                    <div className="delete-container photo">
+                        <div>
+                            {deleteError &&
+                                <p className="error-message">Error deleting profile, please try again.</p>}
                             {!deleteSuccess ?
                                 <Button buttonType="button"
                                         buttonText="Delete Profile"
@@ -116,7 +212,21 @@ function ProfileSettings() {
                                 <p className="success-message">Profile Deleted!</p>
                             }
                         </div>
+                        <div>
+                            {deleteError &&
+                                <p className="error-message">Error deleting photo, please try again.</p>}
+                            {!deletePhotoSuccess ?
+                                <Button buttonType="button"
+                                        buttonText="Delete Photo"
+                                        className="button"
+                                        onClick={handleDeletePhoto}
+                                />
+                                :
+                                <p className="success-message">Photo Deleted!</p>
+                            }
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>

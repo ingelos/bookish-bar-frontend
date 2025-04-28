@@ -1,11 +1,12 @@
 import "./Home.css";
 
 import {Link} from "react-router-dom";
-import UseTrending from "../../hooks/UseTrending.jsx";
+import UseTrending from "../../hooks/useTrending.js";
 
 
 function Home() {
-    const { trending, error, loading } = UseTrending(5, 0);
+    const { trending, error, loading } = UseTrending();
+    const topTrending = trending.slice(0, 5);
     // const [trending, setTrending] = useState([]);
     // const [error, setError] = useState(null);
     // const [loading, setLoading] = useState(false);
@@ -88,7 +89,7 @@ function Home() {
                         {loading && <p className="loading-message">Loading...</p>}
                         {error && <p>{error.message}</p>}
                         <ul className="preview-list">
-                            {trending?.map((book) => (
+                            {topTrending?.map((book) => (
                                 <li key={book.key} className="trending-cover">
                                     <img
                                         src={getCoverUrl(book)}

@@ -1,6 +1,6 @@
 import "./AccountSettings.css";
 import AuthContext from "../../context/AuthContext.jsx";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import PasswordForm from "../../components/passwordForm/PasswordForm.jsx";
 import axios from "axios";
 import Button from "../../components/button/Button.jsx";
@@ -19,6 +19,7 @@ function AccountSettings() {
     const [deleteSuccess, setDeleteSuccess] = useState(null);
     const [deleteError, setDeleteError] = useState(null);
     const token = localStorage.getItem('token');
+
 
 
     async function handleEditUsername(formData) {

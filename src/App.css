@@ -20,8 +20,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px;
-  /*border: 2px solid red;*/
+  margin-top: 30px;
+  padding: 25px;
+  /*border: 2px solid pink;*/
+
 }
 
 form {
@@ -49,11 +51,10 @@ label {
 .titles {
   font-size: 22px;
   margin-bottom: 40px;
-  /*color: var(--color-primary)*/
 }
 
 .button {
-  background-color: var(--color-tertiary);
+  background-color: var(--color-secondary);
   border: 2px solid var(--color-primary);
   border-radius: 25px;
   padding: 5px 12px;
@@ -70,7 +71,7 @@ label {
   padding: 5px 10px;
   width: fit-content;
   border: 2px solid var(--color-primary);
-  background-color: var(--color-tertiary);
+  background-color: var(--color-secondary);
 }
 
 button:hover {

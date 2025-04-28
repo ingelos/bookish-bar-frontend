@@ -1,7 +1,39 @@
-.edit-profile-container  p{
-    margin-left: 15px;
+.profile-settings-container  {
+    display: flex;
+    flex-direction: row;
+}
+
+.delete-container {
+    width: 100%;
+    text-align: center;
 }
 
 .profile-form-container {
     min-height: 250px;
+}
+
+.profile-photo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.preview-container {
+    margin: 20px;
+    padding: 20px;
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+    border: 2px dotted var(--color-primary);
+}
+
+.profile-photo-container form {
+    align-items: center;
+}
+
+.delete-container.photo {
+    display: flex;
+    justify-content: space-evenly;
+
 }
