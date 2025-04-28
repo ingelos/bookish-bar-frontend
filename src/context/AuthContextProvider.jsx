@@ -19,6 +19,7 @@ export function AuthContextProvider({children}) {
     const login = useCallback(async(token) => {
         localStorage.setItem('token', token);
 
+
         const decodedToken = jwtDecode(token);
         const id = decodedToken?.id;
 

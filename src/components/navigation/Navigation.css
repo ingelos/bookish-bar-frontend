@@ -68,10 +68,10 @@ nav {
 /*}*/
 
 #login-link {
-    color: var(--color-tertiary);
+    color: var(--color-secondary);
     padding: 5px 10px;
     border-radius: 25px;
-    border: 2px solid var(--color-tertiary);
+    border: 2px solid var(--color-secondary);
 }
 
 nav a,

@@ -17,8 +17,7 @@
 
   --color-primary: #BC9F8B;
   --color-secondary: #F9F8F5;
-
-  --color-tertiary: #F9F8F5;
+  /*--color-tertiary: #4D3E3E;;*/
   background-color: #F9F8F5;
   font-family: Optima, sans-serif;
   font-size: 14px;
@@ -28,8 +27,6 @@
 h1 {
   font-size: 70px;
   font-weight: 300;
-  /*color: #4D3E3E;*/
-  /*color: var(--color-primary);*/
 }
 
 h2 {
@@ -41,9 +38,9 @@ h3 {
   font-size: 18px;
 }
 
-h4 {
-  font-size: 16px;
-}
+/*h4 {*/
+/*  font-size: 16px;*/
+/*}*/
 
 button, input {
   font-family: inherit;
