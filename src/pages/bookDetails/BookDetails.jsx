@@ -5,10 +5,11 @@ import axios from "axios";
 import BookDetailCard from "../../components/bookDetailCard/BookDetailCard.jsx";
 
 function BookDetails() {
+    const { openLibraryId} = useParams();
     const [book, setBook] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    const { bookId} = useParams();
+
 
     useEffect(() => {
         const controller = new AbortController();

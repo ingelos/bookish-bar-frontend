@@ -70,9 +70,9 @@ export function AuthContextProvider({children}) {
             setAuth(prevAuth => ({
                 ...prevAuth,
                 userProfileData: {
-                    firstname: profileData.firstname,
-                    lastname: profileData.lastname,
-                    about: profileData.about,
+                    firstname: profileData.firstname || null,
+                    lastname: profileData.lastname || null,
+                    about: profileData.about || null,
                 },
                 profilePhotoUrl: profileData.profilePhotoUrl || null,
             }));

@@ -13,9 +13,10 @@ import ProfileSettings from "./pages/profileSettings/ProfileSettings.jsx";
 import SubjectOverview from "./pages/subjectOverview/SubjectOverview.jsx";
 import Subject from "./pages/subject/Subject.jsx";
 import BookDetails from "./pages/bookDetails/BookDetails.jsx";
-import SearchResults from "./pages/searchResults/SearchResults.jsx";
+import SearchPage from "./pages/searchPage/SearchPage.jsx";
 import AuthorDetails from "./pages/authorDetails/AuthorDetails.jsx";
 import Trending from "./pages/trending/Trending.jsx";
+import MyBooks from "./pages/myBooks/MyBooks.jsx";
 
 function App() {
 
@@ -33,10 +34,11 @@ function App() {
                 <Route path="/profiles/:username" element={<Profile/>}/>
                 <Route path="/profiles/:username/profile-settings" element={<ProfileSettings/>}/>
 
+                <Route path="/mybooks" element={<MyBooks/>}/>
                 <Route path="/trending" element={<Trending/>}/>
                 <Route path="/subjects" element={<SubjectOverview/>}/>
                 <Route path="/subjects/:subject" element={<Subject/>}/>
-                <Route path="/search" element={<SearchResults/>}/>
+                <Route path="/search" element={<SearchPage/>}/>
                 <Route path="/books/:bookId" element={<BookDetails/>}/>
 
 
