@@ -15,18 +15,12 @@ function BookCard({ book }) {
                 src={book.coverUrl || NoCoverImage}
                 alt={`${book.title} cover`}
                 onError={onImageError}
-                className='book-cover'
             />
             <div className="book-info">
-                <h3>
-                    <Link to={`/books/${book.openLibraryId}`}>
-                        {book.title || "No title available"}
-                    </Link>
+                <h3><Link to={`/books/${book.openLibraryId}`}>{book.title}</Link>
                 </h3>
-                <h4>
-                    {book.authors && book.authors.length > 0 ? book.authors.join(", ") : "Unknown author"}
-                </h4>
-                <p>{book.publishedYear ? `First published in ${book.publishedYear}` : "Unknown year"}</p>
+                <p>{book.authors? book.authors.join(", ") : "Unknown author"}</p>
+                {book.publishedYear && <p>${book.publishedYear}</p>}
             </div>
         </div>
     )

@@ -2,9 +2,10 @@ import "./BookDetailCard.css";
 import NoCoverImage from "../../assets/icons/No_Cover.jpg";
 import {Link} from "react-router-dom";
 
-function BookDetailCard({ cover, title, authorName, authorId, description, firstSentence, firstPublished }) {
-    const descriptionText = typeof description === "string" ? description : description?.value || "";
-    const firstSentenceText = typeof firstSentence === "string" ? `First sentence: ${firstSentence}` : firstSentence?.value || "";
+function BookDetailCard({ book }) {
+    const descriptionText = book.description || "";
+    const firstSentenceText = book.first_sentence ? `First sentence: ${book.first_sentence}` : "";
+    const firstPublishedYear = book.first_publish_date ? `First published in ${book.first_publish_date}` : "";
 
     function onImageError(e) {
         e.target.src = NoCoverImage;
@@ -15,22 +16,26 @@ function BookDetailCard({ cover, title, authorName, authorId, description, first
         <div className='book-detail-article'>
             <div className='book-cover-detail-container'>
                 <img
-                    src={cover ? cover : NoCoverImage}
-                    alt={`${title} cover`}
+                    src={book.coverUrl}
+                    alt={`${book.title} cover`}
                     onError={onImageError}
-                    className='book-cover-detail'
                 />
             </div>
             <div className='book-detailed-info'>
-                <h2>{title || "No title available"}</h2>
+                <h2>{book.title}</h2>
                 <h4 className='author-name'>
-                    <Link to={`/authors/${authorId}`}>
-                        {authorName || "No author available"}
+                    {book.authors?.map((author, index) => (
+                        <span key={author.id}>
+                            <Link to={`/authors/${author.id}`}>
+                        {author.name}
                     </Link>
+                            {index < book.authors.length - 1 ? ", " : ""}
+                        </span>
+                    )) || "Unknown Author"}
                 </h4>
                 <p className='detail-description'>{descriptionText}</p>
                 <p>{firstSentenceText}</p>
-                <p>{firstPublished ? `First published in ${firstPublished}` : ""}</p>
+                <p>{firstPublishedYear}</p>
             </div>
         </div>
     )
