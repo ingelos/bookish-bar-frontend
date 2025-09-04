@@ -11,14 +11,15 @@ export function AuthContextProvider({children}) {
         isAuth: false,
         user: null,
         authorities: [],
+        profilePhotoUrl: null,
         status: 'pending',
     });
+
 
     const navigate = useNavigate();
 
     const login = useCallback(async(token) => {
         localStorage.setItem('token', token);
-
 
         const decodedToken = jwtDecode(token);
         const id = decodedToken?.id;
@@ -31,21 +32,54 @@ export function AuthContextProvider({children}) {
                 }
             });
 
+            const userData = response.data;
+
             setAuth({
                 isAuth: true,
                 user: {
-                    username: response.data.username,
-                    email: response.data.email,
-                    id: response.data.id,
+                    username: userData.username,
+                    email: userData.email,
+                    id: userData.id,
                 },
-                authorities: response.data.authorities || [],
+                authorities: userData.authorities || [],
+                profilePhotoUrl: null,
+                userProfileData: null,
                 status: 'done',
             });
+
+            fetchProfileData(userData.id);
+
         } catch (error) {
             console.error("Error fetching user data:", error);
             logout();
         }
     }, []);
+
+
+    async function fetchProfileData(userId) {
+        const token = localStorage.getItem('token');
+        try {
+            const response = await axios.get(`http://localhost:8080/users/${userId}/profile`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
+            const profileData = response.data;
+
+            setAuth(prevAuth => ({
+                ...prevAuth,
+                userProfileData: {
+                    firstname: profileData.firstname || null,
+                    lastname: profileData.lastname || null,
+                    about: profileData.about || null,
+                },
+                profilePhotoUrl: profileData.profilePhotoUrl || null,
+            }));
+        } catch(error) {
+            console.error(`Failed to fetch profile data`, error);
+        }
+    }
 
 
     const logout = useCallback(() =>  {
@@ -54,6 +88,8 @@ export function AuthContextProvider({children}) {
             isAuth: false,
             user: null,
             authorities: [],
+            profilePhotoUrl: null,
+            userProfileData: null,
             status: 'done',
         });
 
@@ -71,6 +107,7 @@ export function AuthContextProvider({children}) {
                 isAuth: false,
                 user: null,
                 authorities: [],
+                profilePhotoUrl: null,
                 status: 'done',
             });
             localStorage.removeItem('token');
@@ -82,6 +119,7 @@ export function AuthContextProvider({children}) {
                     isAuth: false,
                     user: null,
                     authorities: [],
+                    profilePhotoUrl: null,
                     status: 'done',
                 });
                 localStorage.removeItem('token');
@@ -97,6 +135,8 @@ export function AuthContextProvider({children}) {
         username: auth.user ? auth.user?.username : null,
         user: auth.user || {},
         authorities: auth.authorities || [],
+        userProfileData: auth.userProfileData || null,
+        profilePhotoUrl: auth.profilePhotoUrl || null,
         login: login,
         logout: logout,
     };

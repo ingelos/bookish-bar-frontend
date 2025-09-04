@@ -5,23 +5,23 @@ import BookCard from "../../components/bookCard/BookCard.jsx";
 import Pagination from "../../components/pagination/Pagination.jsx";
 import SearchBar from "../../components/searchBar/SearchBar.jsx";
 
-function SearchResults() {
+function SearchPage() {
     const [books, setBooks] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const pageSize = 20;
-
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const query = searchParams.get('query') || '';
 
+
     useEffect(() => {
-        if (query || currentPage) {
+        if (query) {
             fetchSearchData(query, currentPage);
         }
-    }, [currentPage, query]);
+    }, [query, currentPage]);
 
     async function fetchSearchData(query, pageNumber = 1) {
         if (!query) return;
@@ -29,22 +29,23 @@ function SearchResults() {
         setLoading(true);
 
         try {
-            const {data} = await axios.get(`https://openlibrary.org/search.json?q=${query}`, {
-                params: {
-                    limit: pageSize,
-                    offset: (pageNumber - 1) * pageSize,
-                }
+            const {data} = await axios.get("http://localhost:8080/books/api/search", {
+                params: { query: query, page: pageNumber, size: pageSize,},
             });
-            setBooks(data.docs);
-            console.log(data.docs);
 
-            setTotalPages(Math.min(Math.ceil(data.numFound / pageSize), 50));
+            setBooks(data);
+            setTotalPages(50);
         } catch (error) {
             if (axios.isCancel(error)) return;
             console.error(error);
+            setError("Failed to fetch books.");
         } finally {
             setLoading(false);
         }
+    }
+
+    async function handlePageChange(pageNumber) {
+        setCurrentPage(pageNumber);
     }
 
     async function handleSearch(newQuery) {
@@ -52,21 +53,6 @@ function SearchResults() {
         setCurrentPage(1);
         navigate(`/search?query=${encodeURIComponent(newQuery)}`)
     }
-
-    async function handlePageChange(pageNumber) {
-        setCurrentPage(pageNumber);
-    }
-
-    function getCoverUrl(book) {
-        if (book.cover_edition_key) {
-            return `https://covers.openlibrary.org/b/olid/${book.cover_edition_key}-S.jpg`;
-        }
-        if (book.cover_i) {
-            return `https://covers.openlibrary.org/b/id/${book.cover_i}-S.jpg`;
-        }
-        return null;
-    }
-
 
 
     return (
@@ -81,22 +67,14 @@ function SearchResults() {
 
                 </div>
                 <div className="title-container">
-                    {books.length > 0 &&  <h3 className="search-results-title">Search results:</h3>}
+                    {books.length > 0 && <h3 className="search-results-title">Search results:</h3>}
                     {loading && <p className="loading-message">Loading...</p>}
+                    {!loading && books.length === 0 && <p>No books found for this query. Try something else.</p>}
                 </div>
                 <div className="book-result-container">
-                    {books.length > 0 && (
+                    {!loading && (
                         books.map((book) => (
-                            <div className="book-container" key={book.key}>
-                                <BookCard
-                                    title={book.title}
-                                    authors={book.author_name}
-                                    published={book.first_publish_year}
-                                    cover={getCoverUrl(book)}
-                                    bookId={(book.key).replace("/works/", "")}
-                                    authorIds={book.author_key}
-                                />
-                            </div>
+                            <BookCard key={book.openLibraryId} {...book} />
                         ))
                     )}
                 </div>
@@ -111,4 +89,4 @@ function SearchResults() {
 
 }
 
-export default SearchResults;
+export default SearchPage;

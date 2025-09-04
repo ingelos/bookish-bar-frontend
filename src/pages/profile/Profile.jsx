@@ -32,7 +32,6 @@ function Profile() {
                     const photoUrl = URL.createObjectURL(photoResponse.data);
                     if (photoUrl != null) {
                         setProfilePhoto(photoUrl);
-                        // console.log(photoUrl);
                     }
 
                 }  catch (photoError) {
